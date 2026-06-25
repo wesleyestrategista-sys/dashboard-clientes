@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Risco de Churn</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2333;
+    --border: #252b3b;
+    --text: #e8ecf4;
+    --muted: #6b7594;
+    --dim: #3d4663;
+
+    --alto: #f0544f;
+    --alto-bg: rgba(240,84,79,0.10);
+    --alto-border: rgba(240,84,79,0.25);
+
+    --medio: #f59e42;
+    --medio-bg: rgba(245,158,66,0.10);
+    --medio-border: rgba(245,158,66,0.25);
+
+    --baixo: #3ec97a;
+    --baixo-bg: rgba(62,201,122,0.10);
+    --baixo-border: rgba(62,201,122,0.25);
+
+    --setup: #7c8cf8;
+    --setup-bg: rgba(124,140,248,0.10);
+    --setup-border: rgba(124,140,248,0.25);
+
+    --accent: #7c8cf8;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .header-left { display: flex; flex-direction: column; gap: 4px; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .meta-info {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .header-right { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    transition: all 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .filter-btn:hover { border-color: var(--dim); color: var(--text); }
+
+  .filter-btn.active-all  { background: var(--surface2); border-color: var(--dim); color: var(--text); }
+  .filter-btn.active-alto { background: var(--alto-bg); border-color: var(--alto); color: var(--alto); }
+  .filter-btn.active-medio { background: var(--medio-bg); border-color: var(--medio); color: var(--medio); }
+  .filter-btn.active-baixo { background: var(--baixo-bg); border-color: var(--baixo); color: var(--baixo); }
+  .filter-btn.active-setup { background: var(--setup-bg); border-color: var(--setup); color: var(--setup); }
+
+  /* MAIN LAYOUT */
+  main { padding: 32px 40px; max-width: 1440px; margin: 0 auto; }
+
+  /* SUMMARY CARDS */
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stat-card.total { border-color: var(--dim); }
+  .stat-card.card-alto { border-left: 3px solid var(--alto); }
+  .stat-card.card-medio { border-left: 3px solid var(--medio); }
+  .stat-card.card-baixo { border-left: 3px solid var(--baixo); }
+  .stat-card.card-setup { border-left: 3px solid var(--setup); }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .stat-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .stat-card.total .stat-number { color: var(--text); }
+  .stat-card.card-alto .stat-number { color: var(--alto); }
+  .stat-card.card-medio .stat-number { color: var(--medio); }
+  .stat-card.card-baixo .stat-number { color: var(--baixo); }
+  .stat-card.card-setup .stat-number { color: var(--setup); }
+
+  .stat-sub {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* SECTION LABEL */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    margin-top: 36px;
+  }
+
+  .section-header:first-of-type { margin-top: 0; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* CLIENT GRID */
+  .client-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 14px;
+  }
+
+  /* CLIENT CARD */
+  .client-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .client-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .client-card.risco-alto::before { background: var(--alto); }
+  .client-card.risco-medio::before { background: var(--medio); }
+  .client-card.risco-baixo::before { background: var(--baixo); }
+  .client-card.risco-setup::before { background: var(--setup); }
+
+  .client-card:hover { background: var(--surface2); border-color: var(--dim); }
+
+  .client-card.risco-alto:hover { border-color: var(--alto-border); }
+  .client-card.risco-medio:hover { border-color: var(--medio-border); }
+  .client-card.risco-baixo:hover { border-color: var(--baixo-border); }
+  .client-card.risco-setup:hover { border-color: var(--setup-border); }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .client-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  .risk-pill {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10.5px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .pill-alto { background: var(--alto-bg); color: var(--alto); border: 1px solid var(--alto-border); }
+  .pill-medio { background: var(--medio-bg); color: var(--medio); border: 1px solid var(--medio-border); }
+  .pill-baixo { background: var(--baixo-bg); color: var(--baixo); border: 1px solid var(--baixo-border); }
+  .pill-setup { background: var(--setup-bg); color: var(--setup); border: 1px solid var(--setup-border); }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .todo-count {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .todo-count span {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .resp-tag {
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--dim);
+    font-weight: 500;
+  }
+
+  /* HIDDEN (filter) */
+  .client-card.hidden { display: none; }
+
+  /* SECTION hidden */
+  .section-group.hidden { display: none; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,12,20,0.85);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .modal-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 1;
+  }
+
+  .modal-title-area { display: flex; flex-direction: column; gap: 8px; }
+
+  .modal-name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+
+  .modal-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    line-height: 1;
+  }
+
+  .modal-close:hover { background: var(--surface2); color: var(--text); }
+
+  .modal-body { padding: 24px 28px; }
+
+  .modal-section { margin-bottom: 24px; }
+  .modal-section:last-child { margin-bottom: 0; }
+
+  .modal-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .modal-status-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #b0bbd4;
+  }
+
+  .todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .todo-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: #b0bbd4;
+    line-height: 1.45;
+  }
+
+  .todo-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .dot-alto { background: var(--alto); }
+  .dot-medio { background: var(--medio); }
+  .dot-baixo { background: var(--baixo); }
+  .dot-setup { background: var(--setup); }
+
+  .resp-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .resp-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--muted);
+    font-size: 14px;
+    display: none;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--dim); }
+
+  @media (max-width: 700px) {
+    header, main { padding: 20px; }
+    .summary-strip { grid-template-columns: repeat(2, 1fr); }
+    .client-grid { grid-template-columns: 1fr; }
+    .modal-header, .modal-body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="eyebrow">Gestão de Carteira</div>
+    <h1>Dashboard de Risco de Churn</h1>
+    <div class="meta-info">Reunião de alinhamento — Wesley Head · Bruno GT · Amanda CS</div>
+  </div>
+  <div class="header-right">
+    <button class="filter-btn active-all" onclick="filterCards('todos', this)">Todos</button>
+    <button class="filter-btn" onclick="filterCards('alto', this)">Alto risco</button>
+    <button class="filter-btn" onclick="filterCards('medio', this)">Médio</button>
+    <button class="filter-btn" onclick="filterCards('baixo', this)">Baixo</button>
+    <button class="filter-btn" onclick="filterCards('setup', this)">Setup</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- SUMMARY -->
+  <div class="summary-strip">
+    <div class="stat-card total">
+      <div class="stat-label">Total de clientes</div>
+      <div class="stat-number">15</div>
+      <div class="stat-sub">na carteira ativa</div>
+    </div>
+    <div class="stat-card card-alto">
+      <div class="stat-label">Alto risco</div>
+      <div class="stat-number">4</div>
+      <div class="stat-sub">ação urgente</div>
+    </div>
+    <div class="stat-card card-medio">
+      <div class="stat-label">Risco médio</div>
+      <div class="stat-number">4</div>
+      <div class="stat-sub">monitorar</div>
+    </div>
+    <div class="stat-card card-baixo">
+      <div class="stat-label">Baixo risco</div>
+      <div class="stat-number">5</div>
+      <div class="stat-sub">manutenção</div>
+    </div>
+    <div class="stat-card card-setup">
+      <div class="stat-label">Setup / Pontual</div>
+      <div class="stat-number">2</div>
+      <div class="stat-sub">em implantação</div>
+    </div>
+  </div>
+
+  <!-- ALTO RISCO -->
+  <div class="section-group" id="group-alto">
+    <div class="section-header">
+      <div class="section-label" style="color: var(--alto);">⬤ Alto risco</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="client-grid">
+
+      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('auto-top')">
+        <div class="card-top">
+          <div class="client-name">Auto TOP</div>
+          <div class="risk-pill pill-alto">ALTO</div>
+        </div>
+        <div class="status-text">Campanhas ativas, mas cliente com problema interno, inadimplência e conflito societário.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>7</span></div>
+          <div class="resp-tag">Amanda</div>
+          <div class="resp-tag">Wesley</div>
+          <div class="resp-tag">Bruno</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('casa-barao')">
+        <div class="card-top">
+          <div class="client-name">Casa Barão</div>
+          <div class="risk-pill pill-alto">ALTO</div>
+        </div>
+        <div class="status-text">Cliente em aviso. Baixa resposta e continuidade incerta. Reunião marcada para 30/06.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>6</span></div>
+          <div class="resp-tag">Amanda</div>
+          <div class="resp-tag">Wesley</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('sul-brasil')">
+        <div class="card-top">
+          <div class="client-name">Sul Brasil Rolamentos</div>
+          <div class="risk-pill pill-alto">ALTO</div>
+        </div>
+        <div class="status-text">Feedback negativo por leads desqualificados. Pausa no Meta e orçamento migrado 100% para Google.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>7</span></div>
+          <div class="resp-tag">Wesley</div>
+          <div class="resp-tag">Amanda</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('valiens')">
+        <div class="card-top">
+          <div class="client-name">Valiens Energia Solar</div>
+          <div class="risk-pill pill-alto">ALTO</div>
+        </div>
+        <div class="status-text">Campanha quase não rodou. Cliente insatisfeito, expectativa desalinhada e pagamento pendente.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>8</span></div>
+          <div class="resp-tag">Wesley</div>
+          <div class="resp-tag">Amanda</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MÉDIO RISCO -->
+  <div class="section-group" id="group-medio">
+    <div class="section-header">
+      <div class="section-label" style="color: var(--medio);">⬤ Risco médio</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="client-grid">
+
+      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('usefarma')">
+        <div class="card-top">
+          <div class="client-name">Farmácia Usefarma</div>
+          <div class="risk-pill pill-medio">MÉDIO</div>
+        </div>
+        <div class="status-text">Meta funcionando e cliente satisfeito. Risco operacional: verificação do anunciante no Google pendente.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>6</span></div>
+          <div class="resp-tag">Bruno</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('black-motos')">
+        <div class="card-top">
+          <div class="client-name">Black Motos</div>
+          <div class="risk-pill pill-medio">MÉDIO</div>
+        </div>
+        <div class="status-text">Resultado positivo, mas ticket baixo e atendimento comercial fraco identificado em prints.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>9</span></div>
+          <div class="resp-tag">Bruno</div>
+          <div class="resp-tag">Amanda</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('pesqueiro')">
+        <div class="card-top">
+          <div class="client-name">Pesqueiro Pais e Filhos</div>
+          <div class="risk-pill pill-medio">MÉDIO-BAIXO</div>
+        </div>
+        <div class="status-text">Cliente satisfeito, mas queda de engajamento. Criativos precisam ser atualizados com foco no buffet.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>6</span></div>
+          <div class="resp-tag">Bruno</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('centro-visual')">
+        <div class="card-top">
+          <div class="client-name">Centro Visual</div>
+          <div class="risk-pill pill-medio">BAIXO ⚠</div>
+        </div>
+        <div class="status-text">Campanhas funcionando bem. Ponto de atenção: parou de registrar agendamentos na planilha.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>5</span></div>
+          <div class="resp-tag">Amanda</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BAIXO RISCO -->
+  <div class="section-group" id="group-baixo">
+    <div class="section-header">
+      <div class="section-label" style="color: var(--baixo);">⬤ Baixo risco</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="client-grid">
+
+      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('av-embalagens')">
+        <div class="card-top">
+          <div class="client-name">AV Embalagens</div>
+          <div class="risk-pill pill-baixo">BAIXO</div>
+        </div>
+        <div class="status-text">~70 leads com conversão de 20%. Cliente satisfeito. Mensurar faturamento dos convertidos.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>4</span></div>
+          <div class="resp-tag">Bruno</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('anjos')">
+        <div class="card-top">
+          <div class="client-name">Anjos Colchões</div>
+          <div class="risk-pill pill-baixo">BAIXO</div>
+        </div>
+        <div class="status-text">Bom volume de vendas no Mega Feirão. Satisfação positiva. Reunião em 26/06.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>5</span></div>
+          <div class="resp-tag">Amanda</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('quintal')">
+        <div class="card-top">
+          <div class="client-name">Quintal VIP</div>
+          <div class="risk-pill pill-baixo">BAIXO</div>
+        </div>
+        <div class="status-text">Cliente muito satisfeita com agenda lotada. Campanha de festa de 15 anos foi destaque.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>5</span></div>
+          <div class="resp-tag">Bruno</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('seifert')">
+        <div class="card-top">
+          <div class="client-name">Seifert</div>
+          <div class="risk-pill pill-baixo">BAIXO</div>
+        </div>
+        <div class="status-text">Campanhas rodando, criativos elogiados. Revisar tracking do funil do teste de visão.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>5</span></div>
+          <div class="resp-tag">Bruno</div>
+        </div>
+      </div>
+
+      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('jornal')">
+        <div class="card-top">
+          <div class="client-name">Jornal do Vale</div>
+          <div class="risk-pill pill-baixo">PONTUAL</div>
+        </div>
+        <div class="status-text">Ação pontual. Sem campanha nova ativa no momento. Confirmar próxima demanda.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>4</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SETUP -->
+  <div class="section-group" id="group-setup">
+    <div class="section-header">
+      <div class="section-label" style="color: var(--setup);">⬤ Setup / Implantação</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="client-grid">
+
+      <div class="client-card risco-setup" data-risco="setup" onclick="openModal('jjsul')">
+        <div class="card-top">
+          <div class="client-name">JJSUL Transportes</div>
+          <div class="risk-pill pill-setup">SETUP</div>
+        </div>
+        <div class="status-text">Em processo de setup. Tudo correndo bem até o momento.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>4</span></div>
+        </div>
+      </div>
+
+      <div class="client-card risco-setup" data-risco="setup" onclick="openModal('esquadrias')">
+        <div class="card-top">
+          <div class="client-name">Esquadrias Leopoldo</div>
+          <div class="risk-pill pill-setup">SETUP</div>
+        </div>
+        <div class="status-text">Em fase de setup. Acessos, criativos e estrutura inicial em definição.</div>
+        <div class="card-footer">
+          <div class="todo-count">To-dos: <span>5</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="empty-state" id="empty-state">Nenhum cliente encontrado para este filtro.</div>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title-area">
+        <div class="modal-name" id="modal-name"></div>
+        <div id="modal-pill"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Situação atual</div>
+        <div class="modal-status-text" id="modal-status"></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">To-dos</div>
+        <ul class="todo-list" id="modal-todos"></ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Responsáveis</div>
+        <div class="resp-list" id="modal-resps"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const clients = {
+  'auto-top': {
+    name: 'Auto TOP',
+    risco: 'alto',
+    status: 'Campanhas ativas em Meta e Google. Cliente relatou alguns fechamentos, porém existe problema de inadimplência, principalmente por parcelamento em boleto na venda de pneus. Além da performance, existe conflito entre sócios e possível separação societária — esse fator aumenta muito o risco, pois o churn pode acontecer por motivo interno mesmo com campanha gerando resultado.',
+    todos: [
+      'Mensurar faturamento gerado pelas campanhas.',
+      'Implementar planilha de performance.',
+      'Separar leads, vendas, inadimplência e faturamento real.',
+      'Avaliar se o problema está na qualidade do lead ou na política comercial de parcelamento.',
+      'Amanda acompanhar relacionamento de perto.',
+      'Wesley alinhar risco estratégico com o cliente, se necessário.',
+      'Bruno revisar campanhas considerando perfil de cliente com maior capacidade de pagamento.'
+    ],
+    resps: ['Amanda', 'Wesley', 'Bruno']
+  },
+  'casa-barao': {
+    name: 'Casa Barão',
+    risco: 'alto',
+    status: 'Cliente está em aviso. Há falta de respostas e ficou pendente o feedback da última campanha da oficina de jogos. A continuidade do cliente ainda está incerta. É necessário mensurar faturamento e movimento da cafeteria.',
+    todos: [
+      'Marcar reunião para o dia 30/06.',
+      'Cobrar feedback da campanha da oficina de jogos.',
+      'Mensurar faturamento gerado.',
+      'Mensurar impacto no movimento da cafeteria.',
+      'Apresentar análise clara de resultado e próximos caminhos.',
+      'Definir se existe possibilidade real de continuidade ou se o cliente deve ser tratado como provável churn.'
+    ],
+    resps: ['Amanda', 'Wesley']
+  },
+  'sul-brasil': {
+    name: 'Sul Brasil Rolamentos',
+    risco: 'alto',
+    status: 'Foi realizada uma call e será feita nova estratégia. Cliente deu feedback negativo dos resultados, principalmente por leads desqualificados. Há risco real de conflito se a percepção de lead ruim continuar.',
+    todos: [
+      'Pausar Meta por enquanto.',
+      'Direcionar 100% do orçamento para Google.',
+      'Revisar palavras-chave, termos de pesquisa e negativas.',
+      'Filtrar melhor intenção de compra.',
+      'Acompanhar resultados de perto nos próximos dias.',
+      'Alinhar com o cliente que a estratégia está sendo corrigida para priorizar qualidade, não volume.',
+      'Wesley/Amanda acompanhar relacionamento para evitar desgaste.'
+    ],
+    resps: ['Wesley', 'Amanda', 'Bruno']
+  },
+  'valiens': {
+    name: 'Valiens Energia Solar',
+    risco: 'alto',
+    status: 'Cliente pediu os 30 e não houve retorno no grupo. Houve problema no cartão. Campanha não rodou por 1 mês completo e o cliente já ficou insatisfeito. Houve apenas uma venda de R$ 14.000. Existe risco por expectativa desalinhada, problema operacional e pagamento pendente.',
+    todos: [
+      'Cobrar pagamento da plataforma.',
+      'Verificar problema no cartão.',
+      'Retomar contato no grupo com clareza.',
+      'Explicar que a campanha não teve período completo de aprendizado/veiculação.',
+      'Alinhar expectativa de prazo e investimento.',
+      'Revisar estratégia para gerar percepção de ação imediata.',
+      'Registrar venda de R$ 14.000 como resultado sem supervalorizar.',
+      'Wesley acompanhar diretamente se houver risco de cancelamento.'
+    ],
+    resps: ['Wesley', 'Amanda']
+  },
+  'usefarma': {
+    name: 'Farmácia Usefarma',
+    risco: 'medio',
+    status: 'Google está complicado por conta da verificação do anunciante — existe preocupação em não conseguir validar. Meta está rodando bem, cliente satisfeito e relatou aumento de faturamento, mas ainda não consegue mensurar os resultados com precisão. O maior risco não é performance, é operacional.',
+    todos: [
+      'Verificar com urgência a pendência da verificação do anunciante no Google.',
+      'Confirmar quais documentos ainda faltam.',
+      'Alinhar com o cliente o risco de pausa ou bloqueio no Google Ads.',
+      'Manter Meta ativo enquanto Google é resolvido.',
+      'Criar forma simples de mensurar vendas ou contatos vindos das campanhas.',
+      'Registrar feedback de aumento de faturamento como ponto positivo para retenção.'
+    ],
+    resps: ['Bruno']
+  },
+  'black-motos': {
+    name: 'Black Motos',
+    risco: 'medio',
+    status: 'Campanhas rodando para manutenção e bike elétrica. Resultado geral positivo, porém com ticket médio baixo. Foram ativadas novas campanhas de moto com preço. O atendimento comercial foi identificado como fraco com base em prints — esse ponto pode limitar a conversão mesmo que as campanhas gerem oportunidades.',
+    todos: [
+      'Mensurar faturamento gerado pelas campanhas.',
+      'Separar resultados por campanha: manutenção, bike elétrica e motos com preço.',
+      'Acompanhar desempenho das novas campanhas de moto.',
+      'Avaliar se os leads com preço geram maior intenção de compra.',
+      'Mapear ticket médio por tipo de serviço/produto.',
+      'Viabilizar treinamento comercial com Fabrício.',
+      'Usar os prints do atendimento como base para diagnóstico comercial.',
+      'Acompanhar se a melhora no atendimento impacta taxa de conversão.',
+      'Amanda acompanhar percepção do cliente e evolução do atendimento.'
+    ],
+    resps: ['Bruno', 'Amanda']
+  },
+  'pesqueiro': {
+    name: 'Pesqueiro Pais e Filhos',
+    risco: 'medio',
+    status: 'Cliente satisfeito. Campanhas com foco em visita ao local. Cliente sentiu queda de engajamento e pediu atualização dos criativos. Próximos vídeos devem focar no buffet. A satisfação ainda é boa, mas a queda de engajamento pode virar reclamação se os criativos não forem renovados.',
+    todos: [
+      'Desenvolver novos roteiros.',
+      'Marcar nova captação.',
+      'Focar próximos vídeos no buffet.',
+      'Atualizar criativos das campanhas.',
+      'Avaliar formatos com apelo visual de comida, ambiente e experiência no local.',
+      'Bruno acompanhar impacto dos novos criativos no engajamento e custo por resultado.'
+    ],
+    resps: ['Bruno']
+  },
+  'centro-visual': {
+    name: 'Centro Visual',
+    risco: 'medio',
+    status: 'Campanhas funcionando muito bem, cliente com feedback positivo. Antes compartilhava planilha de agendamento, mas parou de anotar. Sem registro de agendamentos, a percepção de resultado pode ficar frágil no médio prazo.',
+    todos: [
+      'Retomar o preenchimento da planilha de agendamentos.',
+      'Mensurar agendamentos de todas as unidades.',
+      'Separar desempenho por unidade.',
+      'Validar se o volume de leads está se convertendo em consultas/agendamentos reais.',
+      'Amanda reforçar com o cliente a importância da mensuração.'
+    ],
+    resps: ['Amanda']
+  },
+  'av-embalagens': {
+    name: 'AV Embalagens',
+    risco: 'baixo',
+    status: 'Comércio local com Bruno, e-commerce com José. Campanhas rodando em Meta e Google. Feedback de aproximadamente 70 leads com conversão de cerca de 20%. Cliente com satisfação positiva e indícios de boa conversão.',
+    todos: [
+      'Mensurar faturamento dos leads convertidos.',
+      'Validar ticket médio das vendas geradas.',
+      'Separar resultado do comércio local e do e-commerce.',
+      'Acompanhar se a taxa de conversão de 20% se mantém nos próximos períodos.'
+    ],
+    resps: ['Bruno']
+  },
+  'anjos': {
+    name: 'Anjos Colchões',
+    risco: 'baixo',
+    status: 'No último mês, durante o Mega Feirão, houve bom volume de vendas. Já existem dados de faturamento. Cliente parou de reclamar sobre qualidade de leads ou volume. Percepção de resultado melhorou e a satisfação atual é positiva.',
+    todos: [
+      'Realizar reunião de alinhamento em 26/06.',
+      'Levar dados de faturamento e vendas do Mega Feirão.',
+      'Apresentar evolução de percepção: antes havia reclamação de leads, agora não.',
+      'Alinhar próximos produtos/ofertas para manter ritmo comercial.',
+      'Validar se o cliente deseja repetir campanhas no modelo de feirão/oferta.'
+    ],
+    resps: ['Amanda']
+  },
+  'quintal': {
+    name: 'Quintal VIP',
+    risco: 'baixo',
+    status: 'Cliente elogiou o trabalho e está muito satisfeita com os resultados. Relatou agenda lotada. O primeiro mês não foi bom, mas a campanha específica de festa de 15 anos com formulário foi um sucesso.',
+    todos: [
+      'Documentar o case da campanha de 15 anos.',
+      'Manter estratégia de campanhas específicas por ocasião/evento.',
+      'Avaliar novos públicos: festas de 15 anos, casamentos, aniversários, eventos corporativos e datas comemorativas.',
+      'Usar resultado atual como argumento de continuidade.',
+      'Evitar mudar drasticamente a estratégia que está funcionando.'
+    ],
+    resps: ['Bruno']
+  },
+  'seifert': {
+    name: 'Seifert',
+    risco: 'baixo',
+    status: 'Campanhas rodando. Cliente satisfeito. Novos criativos foram aprovados e elogiados pela Paula da Seifert. Leads estão chegando na planilha. Ponto de atenção: revisar tracking do funil do teste de visão.',
+    todos: [
+      'Revisar rastreamento do funil do teste de visão.',
+      'Confirmar se todos os leads estão chegando corretamente na planilha.',
+      'Validar etapas do funil: teste, cadastro, clique para WhatsApp e agendamento.',
+      'Manter linha criativa atual, já que foi bem recebida.',
+      'Acompanhar conversão dos leads em agendamentos.'
+    ],
+    resps: ['Bruno']
+  },
+  'jornal': {
+    name: 'Jornal do Vale',
+    risco: 'baixo',
+    status: 'Não está rodando campanha nova. Cliente parece ter demanda mais pontual.',
+    todos: [
+      'Confirmar se existe nova demanda prevista.',
+      'Tratar como ação pontual, não como cliente de recorrência ativa.',
+      'Manter relacionamento aberto para próximas campanhas específicas.',
+      'Não priorizar como risco de churn recorrente sem confirmação de contrato ativo.'
+    ],
+    resps: []
+  },
+  'jjsul': {
+    name: 'JJSUL Transportes',
+    risco: 'setup',
+    status: 'Cliente em processo de setup. Tudo correndo bem até o momento.',
+    todos: [
+      'Seguir cronograma de setup.',
+      'Garantir acessos, criativos e estrutura inicial.',
+      'Validar expectativas antes da ativação completa.',
+      'Registrar primeiros indicadores assim que as campanhas iniciarem.'
+    ],
+    resps: []
+  },
+  'esquadrias': {
+    name: 'Esquadrias Leopoldo',
+    risco: 'setup',
+    status: 'Cliente em fase de setup.',
+    todos: [
+      'Seguir implantação.',
+      'Confirmar acessos e materiais.',
+      'Definir estrutura inicial de campanhas.',
+      'Alinhar expectativas de prazo, volume e tipo de lead antes da ativação.',
+      'Criar base de mensuração desde o início para evitar falta de dados depois.'
+    ],
+    resps: []
+  }
+};
+
+const pillLabels = {
+  alto:  { class: 'pill-alto',  label: 'ALTO RISCO' },
+  medio: { class: 'pill-medio', label: 'RISCO MÉDIO' },
+  baixo: { class: 'pill-baixo', label: 'BAIXO RISCO' },
+  setup: { class: 'pill-setup', label: 'SETUP' }
+};
+
+const dotClasses = {
+  alto: 'dot-alto',
+  medio: 'dot-medio',
+  baixo: 'dot-baixo',
+  setup: 'dot-setup'
+};
+
+function openModal(id) {
+  const c = clients[id];
+  if (!c) return;
+
+  document.getElement]
+
+7]4
+ById('modal-name').textContent = c.name;
+
+  const pill = document.getElementById('modal-pill');
+  const p = pillLabels[c.risco];
+  pill.innerHTML = `<span class="risk-pill ${p.class}">${p.label}</span>`;
+
+  document.getElementById('modal-status').textContent = c.status;
+
+  const list = document.getElementById('modal-todos');
+  list.innerHTML = c.todos.map(t =>
+    `<li><span class="todo-dot ${dotClasses[c.risco]}"></span>${t}</li>`
+  ).join('');
+  const resps = document.getElementById('modal-resps');
+  if (c.resps.length) {
+    resps.innerHTML = c.resps.map(r => `<span class="resp-badge">${r}</span>`).join('');
+  } else {
+    resps.innerHTML = '<span style="color:var(--muted);font-size:13px">Não definido</span>';
+  }
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function filterCards(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.className = 'filter-btn';
+  });
+  if (type === 'todos') btn.className = 'filter-btn active-all';
+  else btn.className = `filter-btn active-${type}`;
+
+  const cards = document.querySelectorAll('.client-card');
+  cards.forEach(card => {
+    if (type === 'todos' || card.dataset.risco === type) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  // Hide/show section groups
+  const groups = {
+    alto: document.getElementById('group-alto'),
+    medio: document.getElementById('group-medio'),
+    baixo: document.getElementById('group-baixo'),
+    setup: document.getElementById('group-setup')
+  };
+
+  if (type === 'todos') {
+    Object.values(groups).forEach(g => g.classList.remove('hidden'));
+  } else {
+    Object.entries(groups).forEach(([key, g]) => {
+      if (key === type) g.classList.remove('hidden');
+      else g.classList.add('hidden');
+    });
+  }
+}
+</script>
+</body>
+</html>
