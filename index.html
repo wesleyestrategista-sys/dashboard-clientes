@@ -149,7 +149,7 @@
   <div class="header-left">
     <div class="eyebrow">Gestão de Carteira</div>
     <h1>Dashboard de Risco de Churn</h1>
-    <div class="meta-info">Reunião de alinhamento — Wesley Head · Bruno GT · Amanda CS · Gabriel</div>
+    <div class="meta-info">Reunião de alinhamento — Gabriel · Bruno GT · Fernanda</div>
   </div>
   <div class="header-right">
     <button class="filter-btn active-all" data-filter="todos">Todos</button>
@@ -158,9 +158,8 @@
     <button class="filter-btn" data-filter="baixo">Baixo</button>
     <button class="filter-btn" data-filter="setup">Setup</button>
     <button class="filter-btn filter-sep" data-filter="resp-Gabriel">Gabriel</button>
-    <button class="filter-btn" data-filter="resp-Wesley">Wesley</button>
     <button class="filter-btn" data-filter="resp-Bruno">Bruno</button>
-    <button class="filter-btn" data-filter="resp-Amanda">Amanda</button>
+    <button class="filter-btn" data-filter="resp-Fernanda">Fernanda</button>
   </div>
 </header>
 
@@ -278,7 +277,7 @@ const clients = [
       'Alinhar internamente o risco de churn confirmado.',
       'Definir prazo máximo para resposta antes de encerrar o contrato.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'auto-top',
@@ -292,11 +291,11 @@ const clients = [
       'Implementar planilha de performance.',
       'Separar leads, vendas, inadimplência e faturamento real.',
       'Avaliar se o problema está na qualidade do lead ou na política comercial de parcelamento.',
-      'Amanda acompanhar relacionamento de perto.',
-      'Wesley alinhar risco estratégico com o cliente, se necessário.',
+      'Acompanhar relacionamento de perto.',
+      'Alinhar risco estratégico com o cliente.',
       'Bruno revisar campanhas considerando perfil de cliente com maior capacidade de pagamento.'
     ],
-    resps: ['Amanda', 'Wesley', 'Bruno']
+    resps: ['Bruno']
   },
   {
     id: 'casa-barao',
@@ -313,7 +312,7 @@ const clients = [
       'Apresentar análise clara de resultado e próximos caminhos.',
       'Definir se existe possibilidade real de continuidade ou se o cliente deve ser tratado como provável churn.'
     ],
-    resps: ['Amanda', 'Wesley']
+    resps: []
   },
   {
     id: 'sul-brasil',
@@ -329,9 +328,9 @@ const clients = [
       'Filtrar melhor intenção de compra.',
       'Acompanhar resultados de perto nos próximos dias.',
       'Alinhar com o cliente que a estratégia está sendo corrigida para priorizar qualidade, não volume.',
-      'Wesley/Amanda acompanhar relacionamento para evitar desgaste.'
+      'Acompanhar relacionamento para evitar desgaste.'
     ],
-    resps: ['Wesley', 'Amanda', 'Bruno']
+    resps: ['Bruno']
   },
   {
     id: 'valiens',
@@ -348,9 +347,9 @@ const clients = [
       'Alinhar expectativa de prazo e investimento.',
       'Revisar estratégia para gerar percepção de ação imediata.',
       'Registrar venda de R$ 14.000 como resultado sem supervalorizar.',
-      'Wesley acompanhar diretamente se houver risco de cancelamento.'
+      'Acompanhar diretamente se houver risco de cancelamento.'
     ],
-    resps: ['Wesley', 'Amanda']
+    resps: []
   },
   // ── MÉDIO RISCO ───────────────────────────────────────────────
   {
@@ -367,7 +366,7 @@ const clients = [
       'Monitorar taxa de conversão semana a semana.',
       'Alinhar próxima reunião de acompanhamento comercial.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'zanella',
@@ -383,7 +382,7 @@ const clients = [
       'Revisar campanhas com foco em qualificação de leads.',
       'Documentar tentativas de contato para registro histórico.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'krapper',
@@ -398,7 +397,7 @@ const clients = [
       'Alinhar estratégia de campanhas com o ciclo de compra mais longo.',
       'Documentar resultados positivos para reforçar percepção de valor.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'dnc',
@@ -414,7 +413,7 @@ const clients = [
       'Avaliar se a performance atual é suficiente para manter o cliente satisfeito mesmo sem feedback.',
       'Alinhar internamente como tratar clientes com baixa comunicação.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'usefarma',
@@ -449,9 +448,9 @@ const clients = [
       'Viabilizar treinamento comercial com Fabrício.',
       'Usar os prints do atendimento como base para diagnóstico comercial.',
       'Acompanhar se a melhora no atendimento impacta taxa de conversão.',
-      'Amanda acompanhar percepção do cliente e evolução do atendimento.'
+      'Acompanhar percepção do cliente e evolução do atendimento.'
     ],
-    resps: ['Bruno', 'Amanda']
+    resps: ['Bruno']
   },
   {
     id: 'pesqueiro',
@@ -482,9 +481,9 @@ const clients = [
       'Mensurar agendamentos de todas as unidades.',
       'Separar desempenho por unidade.',
       'Validar se o volume de leads está se convertendo em consultas/agendamentos reais.',
-      'Amanda reforçar com o cliente a importância da mensuração.'
+      'Reforçar com o cliente a importância da mensuração.'
     ],
-    resps: ['Amanda']
+    resps: []
   },
   // ── BAIXO RISCO ───────────────────────────────────────────────
   {
@@ -501,7 +500,7 @@ const clients = [
       'Manter campanhas do Meta rodando normalmente enquanto isso.',
       'Documentar tentativas de contato.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'orthodontic',
@@ -517,7 +516,7 @@ const clients = [
       'Testar novos criativos com apelo para pais de crianças.',
       'Criar métrica de acompanhamento de avaliações qualificadas.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'av-embalagens',
@@ -548,7 +547,7 @@ const clients = [
       'Alinhar próximos produtos/ofertas para manter ritmo comercial.',
       'Validar se o cliente deseja repetir campanhas no modelo de feirão/oferta.'
     ],
-    resps: ['Amanda']
+    resps: ['Bruno']
   },
   {
     id: 'quintal',
@@ -595,7 +594,7 @@ const clients = [
       'Manter relacionamento aberto para próximas campanhas específicas.',
       'Não priorizar como risco de churn recorrente sem confirmação de contrato ativo.'
     ],
-    resps: []
+    resps: ['Bruno']
   },
   // ── SETUP ─────────────────────────────────────────────────────
   {
@@ -612,7 +611,7 @@ const clients = [
       'Reavaliar orçamento após primeiros resultados.',
       'Alinhar KPIs realistas para o investimento atual.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'futura-fundicao',
@@ -628,7 +627,7 @@ const clients = [
       'Alinhar estrutura inicial de campanhas assim que materiais chegarem.',
       'Criar base de mensuração desde o início.'
     ],
-    resps: []
+    resps: ['Fernanda']
   },
   {
     id: 'jjsul',
@@ -659,7 +658,7 @@ const clients = [
       'Alinhar expectativas de prazo, volume e tipo de lead antes da ativação.',
       'Criar base de mensuração desde o início para evitar falta de dados depois.'
     ],
-    resps: []
+    resps: ['Bruno']
   },
   // ── GABRIEL — ALTO RISCO ──────────────────────────────────────
   {
@@ -676,7 +675,7 @@ const clients = [
       'Alinhar expectativas de resultado para o período pós-retomada.',
       'Monitorar de perto nos primeiros meses para garantir satisfação.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
   {
     id: 'mokumanu',
@@ -691,9 +690,9 @@ const clients = [
       'Avaliar página de produto, frete, preço e checkout.',
       'Comparar criativos e anúncios ativos.',
       'Criar plano de teste para primeira venda.',
-      'Wesley avaliar se precisa envolver alguém para análise de site/oferta.'
+      'Avaliar se precisa envolver alguém para análise de site/oferta.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
   {
     id: 'harmonia',
@@ -703,13 +702,13 @@ const clients = [
     statusCard: 'Cliente satisfeita com a agência, mas emocionalmente cansada e cogitando sair do negócio.',
     status: 'Cliente satisfeita com o serviço prestado, mas precisa de mais presença e conversa. Ela entende que a baixa em vendas não vem do marketing, mas do mercado. Está há mais de 20 anos no ramo, demonstra cansaço e cogita sair do negócio. Risco emocional/comercial — pode cancelar não por insatisfação com a agência, mas por desânimo com o próprio negócio.',
     todos: [
-      'Wesley e Gabriel alinharem uma conversa mais estratégica com a cliente.',
+      'Gabriel alinhar uma conversa mais estratégica com a cliente.',
       'Reforçar que o marketing está fazendo sua parte, mas propor ajustes realistas.',
       'Avaliar campanhas com foco em oportunidades mais imediatas.',
       'Pensar em comunicação mais voltada para diferenciação, confiança e desejo.',
       'Mapear se existem produtos/linhas com maior giro para priorizar.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
   // ── GABRIEL — MÉDIO RISCO ─────────────────────────────────────
   {
@@ -726,7 +725,7 @@ const clients = [
       'Criar rotina simples de mensuração na loja: "Como conheceu a loja?".',
       'Reforçar que o aumento de fluxo é resultado das campanhas.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
 
   {
@@ -742,9 +741,9 @@ const clients = [
       'Assim que contas forem liberadas, retomar campanhas com ajustes de CPL.',
       'Analisar criativos e públicos com melhor custo.',
       'Criar plano de otimização para reduzir CPL abaixo de R$ 33.',
-      'Wesley avaliar se vale transformar esse case em argumento interno de retenção.'
+      'Avaliar se vale transformar esse case em argumento interno de retenção.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
   {
     id: 'viva-otica',
@@ -769,16 +768,16 @@ const clients = [
     risco: 'medio',
     pillLabel: 'MÉDIO',
     statusCard: 'Pronto para subir, mas aguarda validação de criativos, acesso às contas e destino dos leads.',
-    status: 'Criativos prontos, aguardando especialista validar. Após validação, campanhas devem subir. É necessário verificar os números que irão receber os leads e avaliar possível criação de landing page para certos produtos. Wesley precisa liberar acesso das contas de anúncios.',
+    status: 'Criativos prontos, aguardando especialista validar. Após validação, campanhas devem subir. É necessário verificar os números que irão receber os leads e avaliar possível criação de landing page para certos produtos. Verificar acesso às contas de anúncios.',
     todos: [
       'Especialista validar criativos.',
-      'Wesley liberar acesso às contas de anúncios.',
+      'Verificar e liberar acesso às contas de anúncios.',
       'Gabriel confirmar números de WhatsApp que receberão os leads.',
       'Subir campanhas após validação e acesso.',
       'Mapear produtos que podem precisar de landing page.',
       'Definir se campanha inicial vai para WhatsApp, formulário ou LP.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
 
   {
@@ -837,12 +836,12 @@ const clients = [
     status: 'Investimento atual de apenas R$ 200/mês. Cliente está com a agência desde o início. Estão perdidos nas informações, mas cliente está ok. Verba muito baixa limita resultado. Cliente pode não ter clareza sobre o que esperar.',
     todos: [
       'Gabriel montar resumo simples do que está rodando e resultados atuais.',
-      'Wesley avaliar se vale reunião de realinhamento.',
+      'Avaliar se vale reunião de realinhamento.',
       'Explicar limitação da verba atual.',
       'Sugerir plano mínimo viável, caso queiram mais previsibilidade.',
       'Organizar indicadores principais para o cliente não ficar perdido.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
   // ── GABRIEL — SETUP ───────────────────────────────────────────
   {
@@ -857,9 +856,9 @@ const clients = [
       'Confirmar pendências restantes.',
       'Dar previsão objetiva da próxima etapa após gravação.',
       'Registrar que o atraso foi por falta de acessos.',
-      'Wesley acompanhar se será necessário reforçar alinhamento com o cliente.'
+      'Acompanhar se será necessário reforçar alinhamento com o cliente.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
   {
     id: 'udmar',
@@ -873,9 +872,9 @@ const clients = [
       'Definir KPIs claros desde o início.',
       'Garantir que o cliente entenda o que a agência pode e não pode controlar.',
       'Criar rotina de acompanhamento de resultados.',
-      'Wesley acompanhar se o cliente precisa de atualização formal.'
+      'Acompanhar se o cliente precisa de atualização formal.'
     ],
-    resps: ['Gabriel', 'Wesley']
+    resps: ['Gabriel']
   },
   {
     id: 'santa-luzia',
