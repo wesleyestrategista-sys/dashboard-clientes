@@ -17,422 +17,117 @@
     --text: #e8ecf4;
     --muted: #6b7594;
     --dim: #3d4663;
-
     --alto: #f0544f;
     --alto-bg: rgba(240,84,79,0.10);
     --alto-border: rgba(240,84,79,0.25);
-
     --medio: #f59e42;
     --medio-bg: rgba(245,158,66,0.10);
     --medio-border: rgba(245,158,66,0.25);
-
     --baixo: #3ec97a;
     --baixo-bg: rgba(62,201,122,0.10);
     --baixo-border: rgba(62,201,122,0.25);
-
     --setup: #7c8cf8;
     --setup-bg: rgba(124,140,248,0.10);
     --setup-border: rgba(124,140,248,0.25);
-
     --accent: #7c8cf8;
   }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.5;
-  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.5; }
 
-  /* HEADER */
-  header {
-    border-bottom: 1px solid var(--border);
-    padding: 28px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
+  header { border-bottom: 1px solid var(--border); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .header-left { display: flex; flex-direction: column; gap: 4px; }
-
-  .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  h1 {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-
-  .meta-info {
-    font-size: 12px;
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-  }
-
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+  .meta-info { font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
   .header-right { display: flex; gap: 10px; flex-wrap: wrap; }
 
-  .filter-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    font-family: 'Inter', sans-serif;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--muted);
-    transition: all 0.15s;
-    letter-spacing: 0.02em;
-  }
-
+  .filter-btn { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; font-family: 'Inter', sans-serif; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--muted); transition: all 0.15s; letter-spacing: 0.02em; }
   .filter-btn:hover { border-color: var(--dim); color: var(--text); }
-
   .filter-btn.active-all  { background: var(--surface2); border-color: var(--dim); color: var(--text); }
   .filter-btn.active-alto { background: var(--alto-bg); border-color: var(--alto); color: var(--alto); }
   .filter-btn.active-medio { background: var(--medio-bg); border-color: var(--medio); color: var(--medio); }
   .filter-btn.active-baixo { background: var(--baixo-bg); border-color: var(--baixo); color: var(--baixo); }
   .filter-btn.active-setup { background: var(--setup-bg); border-color: var(--setup); color: var(--setup); }
 
-  /* MAIN LAYOUT */
   main { padding: 32px 40px; max-width: 1440px; margin: 0 auto; }
 
-  /* SUMMARY CARDS */
-  .summary-strip {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 36px;
-  }
-
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
+  .summary-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 36px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
   .stat-card.total { border-color: var(--dim); }
   .stat-card.card-alto { border-left: 3px solid var(--alto); }
   .stat-card.card-medio { border-left: 3px solid var(--medio); }
   .stat-card.card-baixo { border-left: 3px solid var(--baixo); }
   .stat-card.card-setup { border-left: 3px solid var(--setup); }
-
-  .stat-label {
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-  }
-
-  .stat-number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1;
-  }
-
+  .stat-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .stat-number { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 600; line-height: 1; }
   .stat-card.total .stat-number { color: var(--text); }
   .stat-card.card-alto .stat-number { color: var(--alto); }
   .stat-card.card-medio .stat-number { color: var(--medio); }
   .stat-card.card-baixo .stat-number { color: var(--baixo); }
   .stat-card.card-setup .stat-number { color: var(--setup); }
+  .stat-sub { font-size: 11px; color: var(--muted); }
 
-  .stat-sub {
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  /* SECTION LABEL */
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-    margin-top: 36px;
-  }
-
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; margin-top: 36px; }
   .section-header:first-of-type { margin-top: 0; }
-
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
   .section-line { flex: 1; height: 1px; background: var(--border); }
 
-  /* CLIENT GRID */
-  .client-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 14px;
-  }
+  .client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
 
-  /* CLIENT CARD */
-  .client-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .client-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-  }
-
+  .client-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: border-color 0.15s, background 0.15s; position: relative; overflow: hidden; user-select: none; }
+  .client-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
   .client-card.risco-alto::before { background: var(--alto); }
   .client-card.risco-medio::before { background: var(--medio); }
   .client-card.risco-baixo::before { background: var(--baixo); }
   .client-card.risco-setup::before { background: var(--setup); }
-
   .client-card:hover { background: var(--surface2); border-color: var(--dim); }
-
   .client-card.risco-alto:hover { border-color: var(--alto-border); }
   .client-card.risco-medio:hover { border-color: var(--medio-border); }
   .client-card.risco-baixo:hover { border-color: var(--baixo-border); }
   .client-card.risco-setup:hover { border-color: var(--setup-border); }
+  .client-card.hidden { display: none; }
 
-  .card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .client-name {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text);
-  }
-
-  .risk-pill {
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10.5px;
-    font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .client-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
+  .risk-pill { padding: 3px 10px; border-radius: 20px; font-size: 10.5px; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
   .pill-alto { background: var(--alto-bg); color: var(--alto); border: 1px solid var(--alto-border); }
   .pill-medio { background: var(--medio-bg); color: var(--medio); border: 1px solid var(--medio-border); }
   .pill-baixo { background: var(--baixo-bg); color: var(--baixo); border: 1px solid var(--baixo-border); }
   .pill-setup { background: var(--setup-bg); color: var(--setup); border: 1px solid var(--setup-border); }
 
-  .status-text {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.45;
-    margin-bottom: 14px;
-  }
+  .status-text { font-size: 13px; color: var(--muted); line-height: 1.45; margin-bottom: 14px; }
+  .card-footer { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .todo-count { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .todo-count span { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-weight: 600; color: var(--text); }
+  .resp-tag { font-size: 10.5px; padding: 2px 8px; border-radius: 4px; background: var(--surface2); border: 1px solid var(--border); color: var(--dim); font-weight: 500; }
 
-  .card-footer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .todo-count {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .todo-count span {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .resp-tag {
-    font-size: 10.5px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--dim);
-    font-weight: 500;
-  }
-
-  /* HIDDEN (filter) */
-  .client-card.hidden { display: none; }
-
-  /* SECTION hidden */
   .section-group.hidden { display: none; }
 
-  /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(10,12,20,0.85);
-    backdrop-filter: blur(4px);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,12,20,0.85); backdrop-filter: blur(4px); z-index: 100; align-items: center; justify-content: center; padding: 24px; }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    width: 100%;
-    max-width: 680px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-  }
-
-  .modal-header {
-    padding: 24px 28px 20px;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: var(--surface);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    z-index: 1;
-  }
-
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 680px; max-height: 90vh; overflow-y: auto; position: relative; }
+  .modal-header { padding: 24px 28px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; z-index: 1; }
   .modal-title-area { display: flex; flex-direction: column; gap: 8px; }
-
   .modal-name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
-
-  .modal-close {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.15s;
-    line-height: 1;
-  }
-
+  .modal-close { background: none; border: 1px solid var(--border); color: var(--muted); width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; line-height: 1; }
   .modal-close:hover { background: var(--surface2); color: var(--text); }
-
   .modal-body { padding: 24px 28px; }
-
   .modal-section { margin-bottom: 24px; }
   .modal-section:last-child { margin-bottom: 0; }
-
-  .modal-section-title {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .modal-status-text {
-    font-size: 14px;
-    line-height: 1.65;
-    color: #b0bbd4;
-  }
-
-  .todo-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .todo-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13.5px;
-    color: #b0bbd4;
-    line-height: 1.45;
-  }
-
-  .todo-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    margin-top: 6px;
-    flex-shrink: 0;
-  }
-
+  .modal-section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; }
+  .modal-status-text { font-size: 14px; line-height: 1.65; color: #b0bbd4; }
+  .todo-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .todo-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: #b0bbd4; line-height: 1.45; }
+  .todo-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
   .dot-alto { background: var(--alto); }
   .dot-medio { background: var(--medio); }
   .dot-baixo { background: var(--baixo); }
   .dot-setup { background: var(--setup); }
+  .resp-list { display: flex; gap: 8px; flex-wrap: wrap; }
+  .resp-badge { padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
 
-  .resp-list {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  .empty-state { text-align: center; padding: 64px 24px; color: var(--muted); font-size: 14px; display: none; }
 
-  .resp-badge {
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-  }
-
-  /* EMPTY STATE */
-  .empty-state {
-    text-align: center;
-    padding: 64px 24px;
-    color: var(--muted);
-    font-size: 14px;
-    display: none;
-  }
-
-  /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
@@ -455,11 +150,11 @@
     <div class="meta-info">Reunião de alinhamento — Wesley Head · Bruno GT · Amanda CS</div>
   </div>
   <div class="header-right">
-    <button class="filter-btn active-all" onclick="filterCards('todos', this)">Todos</button>
-    <button class="filter-btn" onclick="filterCards('alto', this)">Alto risco</button>
-    <button class="filter-btn" onclick="filterCards('medio', this)">Médio</button>
-    <button class="filter-btn" onclick="filterCards('baixo', this)">Baixo</button>
-    <button class="filter-btn" onclick="filterCards('setup', this)">Setup</button>
+    <button class="filter-btn active-all" data-filter="todos">Todos</button>
+    <button class="filter-btn" data-filter="alto">Alto risco</button>
+    <button class="filter-btn" data-filter="medio">Médio</button>
+    <button class="filter-btn" data-filter="baixo">Baixo</button>
+    <button class="filter-btn" data-filter="setup">Setup</button>
   </div>
 </header>
 
@@ -469,27 +164,27 @@
   <div class="summary-strip">
     <div class="stat-card total">
       <div class="stat-label">Total de clientes</div>
-      <div class="stat-number">15</div>
+      <div class="stat-number" id="count-total">0</div>
       <div class="stat-sub">na carteira ativa</div>
     </div>
     <div class="stat-card card-alto">
       <div class="stat-label">Alto risco</div>
-      <div class="stat-number">4</div>
+      <div class="stat-number" id="count-alto">0</div>
       <div class="stat-sub">ação urgente</div>
     </div>
     <div class="stat-card card-medio">
       <div class="stat-label">Risco médio</div>
-      <div class="stat-number">4</div>
+      <div class="stat-number" id="count-medio">0</div>
       <div class="stat-sub">monitorar</div>
     </div>
     <div class="stat-card card-baixo">
       <div class="stat-label">Baixo risco</div>
-      <div class="stat-number">5</div>
+      <div class="stat-number" id="count-baixo">0</div>
       <div class="stat-sub">manutenção</div>
     </div>
     <div class="stat-card card-setup">
       <div class="stat-label">Setup / Pontual</div>
-      <div class="stat-number">2</div>
+      <div class="stat-number" id="count-setup">0</div>
       <div class="stat-sub">em implantação</div>
     </div>
   </div>
@@ -500,62 +195,7 @@
       <div class="section-label" style="color: var(--alto);">⬤ Alto risco</div>
       <div class="section-line"></div>
     </div>
-    <div class="client-grid">
-
-      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('auto-top')">
-        <div class="card-top">
-          <div class="client-name">Auto TOP</div>
-          <div class="risk-pill pill-alto">ALTO</div>
-        </div>
-        <div class="status-text">Campanhas ativas, mas cliente com problema interno, inadimplência e conflito societário.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>7</span></div>
-          <div class="resp-tag">Amanda</div>
-          <div class="resp-tag">Wesley</div>
-          <div class="resp-tag">Bruno</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('casa-barao')">
-        <div class="card-top">
-          <div class="client-name">Casa Barão</div>
-          <div class="risk-pill pill-alto">ALTO</div>
-        </div>
-        <div class="status-text">Cliente em aviso. Baixa resposta e continuidade incerta. Reunião marcada para 30/06.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>6</span></div>
-          <div class="resp-tag">Amanda</div>
-          <div class="resp-tag">Wesley</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('sul-brasil')">
-        <div class="card-top">
-          <div class="client-name">Sul Brasil Rolamentos</div>
-          <div class="risk-pill pill-alto">ALTO</div>
-        </div>
-        <div class="status-text">Feedback negativo por leads desqualificados. Pausa no Meta e orçamento migrado 100% para Google.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>7</span></div>
-          <div class="resp-tag">Wesley</div>
-          <div class="resp-tag">Amanda</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-alto" data-risco="alto" onclick="openModal('valiens')">
-        <div class="card-top">
-          <div class="client-name">Valiens Energia Solar</div>
-          <div class="risk-pill pill-alto">ALTO</div>
-        </div>
-        <div class="status-text">Campanha quase não rodou. Cliente insatisfeito, expectativa desalinhada e pagamento pendente.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>8</span></div>
-          <div class="resp-tag">Wesley</div>
-          <div class="resp-tag">Amanda</div>
-        </div>
-      </div>
-
-    </div>
+    <div class="client-grid" id="grid-alto"></div>
   </div>
 
   <!-- MÉDIO RISCO -->
@@ -564,58 +204,7 @@
       <div class="section-label" style="color: var(--medio);">⬤ Risco médio</div>
       <div class="section-line"></div>
     </div>
-    <div class="client-grid">
-
-      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('usefarma')">
-        <div class="card-top">
-          <div class="client-name">Farmácia Usefarma</div>
-          <div class="risk-pill pill-medio">MÉDIO</div>
-        </div>
-        <div class="status-text">Meta funcionando e cliente satisfeito. Risco operacional: verificação do anunciante no Google pendente.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>6</span></div>
-          <div class="resp-tag">Bruno</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('black-motos')">
-        <div class="card-top">
-          <div class="client-name">Black Motos</div>
-          <div class="risk-pill pill-medio">MÉDIO</div>
-        </div>
-        <div class="status-text">Resultado positivo, mas ticket baixo e atendimento comercial fraco identificado em prints.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>9</span></div>
-          <div class="resp-tag">Bruno</div>
-          <div class="resp-tag">Amanda</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('pesqueiro')">
-        <div class="card-top">
-          <div class="client-name">Pesqueiro Pais e Filhos</div>
-          <div class="risk-pill pill-medio">MÉDIO-BAIXO</div>
-        </div>
-        <div class="status-text">Cliente satisfeito, mas queda de engajamento. Criativos precisam ser atualizados com foco no buffet.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>6</span></div>
-          <div class="resp-tag">Bruno</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-medio" data-risco="medio" onclick="openModal('centro-visual')">
-        <div class="card-top">
-          <div class="client-name">Centro Visual</div>
-          <div class="risk-pill pill-medio">BAIXO ⚠</div>
-        </div>
-        <div class="status-text">Campanhas funcionando bem. Ponto de atenção: parou de registrar agendamentos na planilha.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>5</span></div>
-          <div class="resp-tag">Amanda</div>
-        </div>
-      </div>
-
-    </div>
+    <div class="client-grid" id="grid-medio"></div>
   </div>
 
   <!-- BAIXO RISCO -->
@@ -624,68 +213,7 @@
       <div class="section-label" style="color: var(--baixo);">⬤ Baixo risco</div>
       <div class="section-line"></div>
     </div>
-    <div class="client-grid">
-
-      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('av-embalagens')">
-        <div class="card-top">
-          <div class="client-name">AV Embalagens</div>
-          <div class="risk-pill pill-baixo">BAIXO</div>
-        </div>
-        <div class="status-text">~70 leads com conversão de 20%. Cliente satisfeito. Mensurar faturamento dos convertidos.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>4</span></div>
-          <div class="resp-tag">Bruno</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('anjos')">
-        <div class="card-top">
-          <div class="client-name">Anjos Colchões</div>
-          <div class="risk-pill pill-baixo">BAIXO</div>
-        </div>
-        <div class="status-text">Bom volume de vendas no Mega Feirão. Satisfação positiva. Reunião em 26/06.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>5</span></div>
-          <div class="resp-tag">Amanda</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('quintal')">
-        <div class="card-top">
-          <div class="client-name">Quintal VIP</div>
-          <div class="risk-pill pill-baixo">BAIXO</div>
-        </div>
-        <div class="status-text">Cliente muito satisfeita com agenda lotada. Campanha de festa de 15 anos foi destaque.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>5</span></div>
-          <div class="resp-tag">Bruno</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('seifert')">
-        <div class="card-top">
-          <div class="client-name">Seifert</div>
-          <div class="risk-pill pill-baixo">BAIXO</div>
-        </div>
-        <div class="status-text">Campanhas rodando, criativos elogiados. Revisar tracking do funil do teste de visão.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>5</span></div>
-          <div class="resp-tag">Bruno</div>
-        </div>
-      </div>
-
-      <div class="client-card risco-baixo" data-risco="baixo" onclick="openModal('jornal')">
-        <div class="card-top">
-          <div class="client-name">Jornal do Vale</div>
-          <div class="risk-pill pill-baixo">PONTUAL</div>
-        </div>
-        <div class="status-text">Ação pontual. Sem campanha nova ativa no momento. Confirmar próxima demanda.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>4</span></div>
-        </div>
-      </div>
-
-    </div>
+    <div class="client-grid" id="grid-baixo"></div>
   </div>
 
   <!-- SETUP -->
@@ -694,31 +222,7 @@
       <div class="section-label" style="color: var(--setup);">⬤ Setup / Implantação</div>
       <div class="section-line"></div>
     </div>
-    <div class="client-grid">
-
-      <div class="client-card risco-setup" data-risco="setup" onclick="openModal('jjsul')">
-        <div class="card-top">
-          <div class="client-name">JJSUL Transportes</div>
-          <div class="risk-pill pill-setup">SETUP</div>
-        </div>
-        <div class="status-text">Em processo de setup. Tudo correndo bem até o momento.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>4</span></div>
-        </div>
-      </div>
-
-      <div class="client-card risco-setup" data-risco="setup" onclick="openModal('esquadrias')">
-        <div class="card-top">
-          <div class="client-name">Esquadrias Leopoldo</div>
-          <div class="risk-pill pill-setup">SETUP</div>
-        </div>
-        <div class="status-text">Em fase de setup. Acessos, criativos e estrutura inicial em definição.</div>
-        <div class="card-footer">
-          <div class="todo-count">To-dos: <span>5</span></div>
-        </div>
-      </div>
-
-    </div>
+    <div class="client-grid" id="grid-setup"></div>
   </div>
 
   <div class="empty-state" id="empty-state">Nenhum cliente encontrado para este filtro.</div>
@@ -726,14 +230,14 @@
 </main>
 
 <!-- MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+<div class="modal-overlay" id="modal-overlay">
   <div class="modal" id="modal">
     <div class="modal-header">
       <div class="modal-title-area">
         <div class="modal-name" id="modal-name"></div>
         <div id="modal-pill"></div>
       </div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-close" id="modal-close-btn">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-section">
@@ -753,10 +257,29 @@
 </div>
 
 <script>
-const clients = {
-  'auto-top': {
+const clients = [
+  // ── ALTO RISCO ────────────────────────────────────────────────
+  {
+    id: 'brasil-industria',
+    name: 'Brasil Indústria de Plástico',
+    risco: 'alto',
+    pillLabel: 'ALTO',
+    statusCard: 'Bons resultados históricos (~R$30k/mês), mas cliente solicitou cancelamento há 2 semanas sem retorno.',
+    status: 'Cliente com histórico positivo, média de R$ 30 mil/mês em faturamento com investimento de R$ 1.500 em mídia. Recentemente solicitou cancelamento e desde então não houve retorno para entender o motivo. A solicitação foi feita há aproximadamente duas semanas e ainda aguarda posicionamento.',
+    todos: [
+      'Tentar contato ativo para entender o motivo do cancelamento.',
+      'Preparar apresentação de resultados históricos como argumento de retenção.',
+      'Alinhar internamente o risco de churn confirmado.',
+      'Definir prazo máximo para resposta antes de encerrar o contrato.'
+    ],
+    resps: []
+  },
+  {
+    id: 'auto-top',
     name: 'Auto TOP',
     risco: 'alto',
+    pillLabel: 'ALTO',
+    statusCard: 'Campanhas ativas, mas cliente com problema interno, inadimplência e conflito societário.',
     status: 'Campanhas ativas em Meta e Google. Cliente relatou alguns fechamentos, porém existe problema de inadimplência, principalmente por parcelamento em boleto na venda de pneus. Além da performance, existe conflito entre sócios e possível separação societária — esse fator aumenta muito o risco, pois o churn pode acontecer por motivo interno mesmo com campanha gerando resultado.',
     todos: [
       'Mensurar faturamento gerado pelas campanhas.',
@@ -769,9 +292,12 @@ const clients = {
     ],
     resps: ['Amanda', 'Wesley', 'Bruno']
   },
-  'casa-barao': {
+  {
+    id: 'casa-barao',
     name: 'Casa Barão',
     risco: 'alto',
+    pillLabel: 'ALTO',
+    statusCard: 'Cliente em aviso. Baixa resposta e continuidade incerta. Reunião marcada para 30/06.',
     status: 'Cliente está em aviso. Há falta de respostas e ficou pendente o feedback da última campanha da oficina de jogos. A continuidade do cliente ainda está incerta. É necessário mensurar faturamento e movimento da cafeteria.',
     todos: [
       'Marcar reunião para o dia 30/06.',
@@ -783,9 +309,12 @@ const clients = {
     ],
     resps: ['Amanda', 'Wesley']
   },
-  'sul-brasil': {
+  {
+    id: 'sul-brasil',
     name: 'Sul Brasil Rolamentos',
     risco: 'alto',
+    pillLabel: 'ALTO',
+    statusCard: 'Feedback negativo por leads desqualificados. Pausa no Meta e orçamento migrado 100% para Google.',
     status: 'Foi realizada uma call e será feita nova estratégia. Cliente deu feedback negativo dos resultados, principalmente por leads desqualificados. Há risco real de conflito se a percepção de lead ruim continuar.',
     todos: [
       'Pausar Meta por enquanto.',
@@ -798,9 +327,12 @@ const clients = {
     ],
     resps: ['Wesley', 'Amanda', 'Bruno']
   },
-  'valiens': {
+  {
+    id: 'valiens',
     name: 'Valiens Energia Solar',
     risco: 'alto',
+    pillLabel: 'ALTO',
+    statusCard: 'Campanha quase não rodou. Cliente insatisfeito, expectativa desalinhada e pagamento pendente.',
     status: 'Cliente pediu os 30 e não houve retorno no grupo. Houve problema no cartão. Campanha não rodou por 1 mês completo e o cliente já ficou insatisfeito. Houve apenas uma venda de R$ 14.000. Existe risco por expectativa desalinhada, problema operacional e pagamento pendente.',
     todos: [
       'Cobrar pagamento da plataforma.',
@@ -814,9 +346,76 @@ const clients = {
     ],
     resps: ['Wesley', 'Amanda']
   },
-  'usefarma': {
+  // ── MÉDIO RISCO ───────────────────────────────────────────────
+  {
+    id: 'cbeliv',
+    name: 'Cbeliv',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Volume alto de leads (~1.300/mês), mas conversão de apenas 1%. Gargalo no processo comercial.',
+    status: 'Campanhas geram volume consistente de oportunidades, porém a taxa de conversão permanece muito baixa (cerca de 1%). Investimento mensal de R$ 4.000 e aproximadamente 1.300 leads no último mês. Diagnóstico detalhado do comercial foi apresentado, apontando diversos pontos de melhoria. Não é a primeira vez que esse alinhamento é feito. Necessário testar estratégias para leads com maior nível de consciência.',
+    todos: [
+      'Testar campanhas de formulário para leads mais qualificados.',
+      'Acompanhar implementação das melhorias comerciais apresentadas no diagnóstico.',
+      'Criar abordagens mais qualificadas para aumentar nível de consciência dos leads.',
+      'Monitorar taxa de conversão semana a semana.',
+      'Alinhar próxima reunião de acompanhamento comercial.'
+    ],
+    resps: []
+  },
+  {
+    id: 'zanella',
+    name: 'Zanella Mobilidade',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Comunicação inconsistente. 69 leads, 9 vendas, mas apenas 2 atribuídas ao tráfego pago.',
+    status: 'Cliente com comunicação inconsistente. Há bastante tempo tentando agendar reunião de acompanhamento sem sucesso. Último feedback: 69 leads gerados, 9 vendas realizadas, mas apenas 2 atribuídas ao tráfego pago. Necessário aprofundar análise do processo comercial e entender melhor a atribuição das vendas.',
+    todos: [
+      'Insistir no agendamento da reunião de acompanhamento.',
+      'Aprofundar análise sobre as 9 vendas: quais vieram de tráfego pago x outros canais.',
+      'Alinhar processo de atribuição de vendas com o cliente.',
+      'Revisar campanhas com foco em qualificação de leads.',
+      'Documentar tentativas de contato para registro histórico.'
+    ],
+    resps: []
+  },
+  {
+    id: 'krapper',
+    name: 'Krapper',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Cliente satisfeito, resultados positivos, mas ciclo de vendas longo e espaço para evolução.',
+    status: 'Cliente satisfeito com o trabalho realizado. Os resultados são positivos, porém ainda existe espaço para evolução. O principal ponto de melhoria está no processo comercial, aliado ao fato de que o ciclo de vendas é naturalmente mais longo. O próprio cliente reconhece essa característica e demonstra satisfação geral.',
+    todos: [
+      'Mapear ciclo de vendas completo para ajustar expectativa de resultado.',
+      'Identificar pontos de melhoria no processo comercial.',
+      'Alinhar estratégia de campanhas com o ciclo de compra mais longo.',
+      'Documentar resultados positivos para reforçar percepção de valor.'
+    ],
+    resps: []
+  },
+  {
+    id: 'dnc',
+    name: 'DNC Telhas e Ferragens',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Campanhas estáveis, mas cliente foge de reuniões e não dá feedback comercial há meses.',
+    status: 'Cliente antigo com baixo nível de comunicação. Diversas tentativas de contato realizadas com raridade de retorno — cliente foge de reunião. Performance média: Meta Ads ~200 leads/mês, Google Ads ~100 leads/mês. As campanhas seguem estáveis, mas a falta de feedback comercial impede avaliar a qualidade dos resultados.',
+    todos: [
+      'Insistir em novo contato para reunião de acompanhamento.',
+      'Tentar canal alternativo de comunicação (WhatsApp, ligação direta).',
+      'Documentar tentativas de contato para histórico.',
+      'Avaliar se a performance atual é suficiente para manter o cliente satisfeito mesmo sem feedback.',
+      'Alinhar internamente como tratar clientes com baixa comunicação.'
+    ],
+    resps: []
+  },
+  {
+    id: 'usefarma',
     name: 'Farmácia Usefarma',
     risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Meta funcionando e cliente satisfeito. Risco operacional: verificação do anunciante no Google pendente.',
     status: 'Google está complicado por conta da verificação do anunciante — existe preocupação em não conseguir validar. Meta está rodando bem, cliente satisfeito e relatou aumento de faturamento, mas ainda não consegue mensurar os resultados com precisão. O maior risco não é performance, é operacional.',
     todos: [
       'Verificar com urgência a pendência da verificação do anunciante no Google.',
@@ -828,9 +427,12 @@ const clients = {
     ],
     resps: ['Bruno']
   },
-  'black-motos': {
+  {
+    id: 'black-motos',
     name: 'Black Motos',
     risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Resultado positivo, mas ticket baixo e atendimento comercial fraco identificado em prints.',
     status: 'Campanhas rodando para manutenção e bike elétrica. Resultado geral positivo, porém com ticket médio baixo. Foram ativadas novas campanhas de moto com preço. O atendimento comercial foi identificado como fraco com base em prints — esse ponto pode limitar a conversão mesmo que as campanhas gerem oportunidades.',
     todos: [
       'Mensurar faturamento gerado pelas campanhas.',
@@ -845,9 +447,12 @@ const clients = {
     ],
     resps: ['Bruno', 'Amanda']
   },
-  'pesqueiro': {
+  {
+    id: 'pesqueiro',
     name: 'Pesqueiro Pais e Filhos',
     risco: 'medio',
+    pillLabel: 'MÉDIO-BAIXO',
+    statusCard: 'Cliente satisfeito, mas queda de engajamento. Criativos precisam ser atualizados com foco no buffet.',
     status: 'Cliente satisfeito. Campanhas com foco em visita ao local. Cliente sentiu queda de engajamento e pediu atualização dos criativos. Próximos vídeos devem focar no buffet. A satisfação ainda é boa, mas a queda de engajamento pode virar reclamação se os criativos não forem renovados.',
     todos: [
       'Desenvolver novos roteiros.',
@@ -859,9 +464,12 @@ const clients = {
     ],
     resps: ['Bruno']
   },
-  'centro-visual': {
+  {
+    id: 'centro-visual',
     name: 'Centro Visual',
     risco: 'medio',
+    pillLabel: 'BAIXO ⚠',
+    statusCard: 'Campanhas funcionando bem. Ponto de atenção: parou de registrar agendamentos na planilha.',
     status: 'Campanhas funcionando muito bem, cliente com feedback positivo. Antes compartilhava planilha de agendamento, mas parou de anotar. Sem registro de agendamentos, a percepção de resultado pode ficar frágil no médio prazo.',
     todos: [
       'Retomar o preenchimento da planilha de agendamentos.',
@@ -872,9 +480,45 @@ const clients = {
     ],
     resps: ['Amanda']
   },
-  'av-embalagens': {
+  // ── BAIXO RISCO ───────────────────────────────────────────────
+  {
+    id: 'fixsul',
+    name: 'Fixsul',
+    risco: 'baixo',
+    pillLabel: 'BAIXO ⚠',
+    statusCard: 'Resultados consistentes, mas acesso ao Google Ads removido e comunicação distante.',
+    status: 'Cliente antigo com resultados consistentes. Meta Ads com excelente custo por lead, Google Ads com maior taxa de fechamento. Pontos de atenção: cliente bastante distante na comunicação, problema recente com saldo do Meta Ads aguardando reembolso da plataforma, e o acesso ao Google Ads foi removido pelo cliente — tentando contato com o Vini há alguns dias sem retorno.',
+    todos: [
+      'Retomar contato com o Vini para entender a remoção do acesso ao Google Ads.',
+      'Acompanhar reembolso do saldo do Meta Ads.',
+      'Solicitar restabelecimento do acesso ao Google Ads.',
+      'Manter campanhas do Meta rodando normalmente enquanto isso.',
+      'Documentar tentativas de contato.'
+    ],
+    resps: []
+  },
+  {
+    id: 'orthodontic',
+    name: 'Orthodontic',
+    risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: 'Cliente recém-assumido. Foco no Meta com ortodontia infantil, que apresentou melhores resultados.',
+    status: 'Cliente recém-assumido. O principal desafio é gerar avaliações realmente qualificadas. Google Ads com baixo desempenho — pouca demanda e baixo volume de conversões, consumindo pouca verba. Foco das estratégias concentrado no Meta Ads, onde há maior potencial. Ortodontia infantil apresentou melhores resultados e maior taxa de agendamento.',
+    todos: [
+      'Manter foco no Meta Ads com ortodontia infantil.',
+      'Avaliar se vale manter Google Ads ativo ou pausar temporariamente.',
+      'Mensurar taxa de agendamento e conversão dos leads do Meta.',
+      'Testar novos criativos com apelo para pais de crianças.',
+      'Criar métrica de acompanhamento de avaliações qualificadas.'
+    ],
+    resps: []
+  },
+  {
+    id: 'av-embalagens',
     name: 'AV Embalagens',
     risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: '~70 leads com conversão de 20%. Cliente satisfeito. Mensurar faturamento dos convertidos.',
     status: 'Comércio local com Bruno, e-commerce com José. Campanhas rodando em Meta e Google. Feedback de aproximadamente 70 leads com conversão de cerca de 20%. Cliente com satisfação positiva e indícios de boa conversão.',
     todos: [
       'Mensurar faturamento dos leads convertidos.',
@@ -884,9 +528,12 @@ const clients = {
     ],
     resps: ['Bruno']
   },
-  'anjos': {
+  {
+    id: 'anjos',
     name: 'Anjos Colchões',
     risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: 'Bom volume de vendas no Mega Feirão. Satisfação positiva. Reunião em 26/06.',
     status: 'No último mês, durante o Mega Feirão, houve bom volume de vendas. Já existem dados de faturamento. Cliente parou de reclamar sobre qualidade de leads ou volume. Percepção de resultado melhorou e a satisfação atual é positiva.',
     todos: [
       'Realizar reunião de alinhamento em 26/06.',
@@ -897,9 +544,12 @@ const clients = {
     ],
     resps: ['Amanda']
   },
-  'quintal': {
+  {
+    id: 'quintal',
     name: 'Quintal VIP',
     risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: 'Cliente muito satisfeita com agenda lotada. Campanha de festa de 15 anos foi destaque.',
     status: 'Cliente elogiou o trabalho e está muito satisfeita com os resultados. Relatou agenda lotada. O primeiro mês não foi bom, mas a campanha específica de festa de 15 anos com formulário foi um sucesso.',
     todos: [
       'Documentar o case da campanha de 15 anos.',
@@ -910,9 +560,12 @@ const clients = {
     ],
     resps: ['Bruno']
   },
-  'seifert': {
+  {
+    id: 'seifert',
     name: 'Seifert',
     risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: 'Campanhas rodando, criativos elogiados. Revisar tracking do funil do teste de visão.',
     status: 'Campanhas rodando. Cliente satisfeito. Novos criativos foram aprovados e elogiados pela Paula da Seifert. Leads estão chegando na planilha. Ponto de atenção: revisar tracking do funil do teste de visão.',
     todos: [
       'Revisar rastreamento do funil do teste de visão.',
@@ -923,9 +576,12 @@ const clients = {
     ],
     resps: ['Bruno']
   },
-  'jornal': {
+  {
+    id: 'jornal',
     name: 'Jornal do Vale',
     risco: 'baixo',
+    pillLabel: 'PONTUAL',
+    statusCard: 'Ação pontual. Sem campanha nova ativa no momento. Confirmar próxima demanda.',
     status: 'Não está rodando campanha nova. Cliente parece ter demanda mais pontual.',
     todos: [
       'Confirmar se existe nova demanda prevista.',
@@ -935,9 +591,45 @@ const clients = {
     ],
     resps: []
   },
-  'jjsul': {
+  // ── SETUP ─────────────────────────────────────────────────────
+  {
+    id: 'sulfix',
+    name: 'Sulfix',
+    risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Início das campanhas previsto. Optou por R$ 750/mês (metade do recomendado de R$ 1.500).',
+    status: 'Início das campanhas previsto para breve. Recomendação inicial foi de R$ 1.500/mês de investimento, porém o cliente optou por iniciar com R$ 750/mês — metade da verba sugerida. Já foi alinhado que essa decisão reduz o potencial de alcance e geração de resultados, mas neste primeiro momento não possuem disponibilidade para aumentar o investimento.',
+    todos: [
+      'Acompanhar ativação das campanhas.',
+      'Registrar alinhamento sobre a verba reduzida para referência futura.',
+      'Monitorar resultados iniciais com expectativa ajustada.',
+      'Reavaliar orçamento após primeiros resultados.',
+      'Alinhar KPIs realistas para o investimento atual.'
+    ],
+    resps: []
+  },
+  {
+    id: 'futura-fundicao',
+    name: 'Futura Fundição',
+    risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Em setup. Campanhas aguardam envio de informações e materiais pelo cliente.',
+    status: 'Projeto ainda em fase de setup. As campanhas ainda não iniciaram pois o cliente permanece pendente no envio de algumas informações e materiais necessários para a implementação.',
+    todos: [
+      'Cobrar materiais e informações pendentes do cliente.',
+      'Definir prazo para envio dos materiais.',
+      'Confirmar acessos necessários.',
+      'Alinhar estrutura inicial de campanhas assim que materiais chegarem.',
+      'Criar base de mensuração desde o início.'
+    ],
+    resps: []
+  },
+  {
+    id: 'jjsul',
     name: 'JJSUL Transportes',
     risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Em processo de setup. Tudo correndo bem até o momento.',
     status: 'Cliente em processo de setup. Tudo correndo bem até o momento.',
     todos: [
       'Seguir cronograma de setup.',
@@ -947,9 +639,12 @@ const clients = {
     ],
     resps: []
   },
-  'esquadrias': {
+  {
+    id: 'esquadrias',
     name: 'Esquadrias Leopoldo',
     risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Em fase de setup. Acessos, criativos e estrutura inicial em definição.',
     status: 'Cliente em fase de setup.',
     todos: [
       'Seguir implantação.',
@@ -960,94 +655,107 @@ const clients = {
     ],
     resps: []
   }
-};
+];
 
-const pillLabels = {
-  alto:  { class: 'pill-alto',  label: 'ALTO RISCO' },
-  medio: { class: 'pill-medio', label: 'RISCO MÉDIO' },
-  baixo: { class: 'pill-baixo', label: 'BAIXO RISCO' },
-  setup: { class: 'pill-setup', label: 'SETUP' }
-};
+const pillClasses = { alto: 'pill-alto', medio: 'pill-medio', baixo: 'pill-baixo', setup: 'pill-setup' };
+const dotClasses  = { alto: 'dot-alto',  medio: 'dot-medio',  baixo: 'dot-baixo',  setup: 'dot-setup'  };
+const pillFullLabels = { alto: 'ALTO RISCO', medio: 'RISCO MÉDIO', baixo: 'BAIXO RISCO', setup: 'SETUP' };
 
-const dotClasses = {
-  alto: 'dot-alto',
-  medio: 'dot-medio',
-  baixo: 'dot-baixo',
-  setup: 'dot-setup'
-};
+// Build cards
+function buildCards() {
+  const grids = { alto: document.getElementById('grid-alto'), medio: document.getElementById('grid-medio'), baixo: document.getElementById('grid-baixo'), setup: document.getElementById('grid-setup') };
+  const counts = { alto: 0, medio: 0, baixo: 0, setup: 0 };
 
+  clients.forEach(c => {
+    counts[c.risco]++;
+    const card = document.createElement('div');
+    card.className = 'client-card risco-' + c.risco;
+    card.dataset.risco = c.risco;
+    card.dataset.id = c.id;
+
+    const respsHtml = c.resps.length
+      ? c.resps.map(r => `<div class="resp-tag">${r}</div>`).join('')
+      : '';
+
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="client-name">${c.name}</div>
+        <div class="risk-pill ${pillClasses[c.risco]}">${c.pillLabel}</div>
+      </div>
+      <div class="status-text">${c.statusCard}</div>
+      <div class="card-footer">
+        <div class="todo-count">To-dos: <span>${c.todos.length}</span></div>
+        ${respsHtml}
+      </div>`;
+
+    card.addEventListener('click', function() { openModal(c.id); });
+    grids[c.risco].appendChild(card);
+  });
+
+  document.getElementById('count-total').textContent = clients.length;
+  document.getElementById('count-alto').textContent  = counts.alto;
+  document.getElementById('count-medio').textContent = counts.medio;
+  document.getElementById('count-baixo').textContent = counts.baixo;
+  document.getElementById('count-setup').textContent = counts.setup;
+}
+
+// Modal
 function openModal(id) {
-  const c = clients[id];
+  const c = clients.find(x => x.id === id);
   if (!c) return;
-
-  document.getElement]
-
-7]4
-ById('modal-name').textContent = c.name;
-
-  const pill = document.getElementById('modal-pill');
-  const p = pillLabels[c.risco];
-  pill.innerHTML = `<span class="risk-pill ${p.class}">${p.label}</span>`;
-
+  document.getElementById('modal-name').textContent = c.name;
+  document.getElementById('modal-pill').innerHTML = `<span class="risk-pill ${pillClasses[c.risco]}">${pillFullLabels[c.risco]}</span>`;
   document.getElementById('modal-status').textContent = c.status;
-
-  const list = document.getElementById('modal-todos');
-  list.innerHTML = c.todos.map(t =>
+  document.getElementById('modal-todos').innerHTML = c.todos.map(t =>
     `<li><span class="todo-dot ${dotClasses[c.risco]}"></span>${t}</li>`
   ).join('');
-  const resps = document.getElementById('modal-resps');
-  if (c.resps.length) {
-    resps.innerHTML = c.resps.map(r => `<span class="resp-badge">${r}</span>`).join('');
-  } else {
-    resps.innerHTML = '<span style="color:var(--muted);font-size:13px">Não definido</span>';
-  }
+  document.getElementById('modal-resps').innerHTML = c.resps.length
+    ? c.resps.map(r => `<span class="resp-badge">${r}</span>`).join('')
+    : '<span style="color:var(--muted);font-size:13px">Não definido</span>';
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-function closeModalOnOverlay(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-function filterCards(type, btn) {
+// Filter
+function filterCards(type) {
   document.querySelectorAll('.filter-btn').forEach(b => {
-    b.className = 'filter-btn';
-  });
-  if (type === 'todos') btn.className = 'filter-btn active-all';
-  else btn.className = `filter-btn active-${type}`;
-
-  const cards = document.querySelectorAll('.client-card');
-  cards.forEach(card => {
-    if (type === 'todos' || card.dataset.risco === type) {
-      card.classList.remove('hidden');
-    } else {
-      card.classList.add('hidden');
-    }
+    const f = b.dataset.filter;
+    b.className = 'filter-btn' + (f === type ? ' active-' + (f === 'todos' ? 'all' : f) : '');
   });
 
-  // Hide/show section groups
-  const groups = {
-    alto: document.getElementById('group-alto'),
-    medio: document.getElementById('group-medio'),
-    baixo: document.getElementById('group-baixo'),
-    setup: document.getElementById('group-setup')
-  };
+  document.querySelectorAll('.client-card').forEach(card => {
+    card.classList.toggle('hidden', type !== 'todos' && card.dataset.risco !== type);
+  });
 
-  if (type === 'todos') {
-    Object.values(groups).forEach(g => g.classList.remove('hidden'));
-  } else {
-    Object.entries(groups).forEach(([key, g]) => {
-      if (key === type) g.classList.remove('hidden');
-      else g.classList.add('hidden');
-    });
-  }
+  ['alto','medio','baixo','setup'].forEach(g => {
+    const group = document.getElementById('group-' + g);
+    group.classList.toggle('hidden', type !== 'todos' && type !== g);
+  });
 }
+
+// Events
+document.addEventListener('DOMContentLoaded', function() {
+  buildCards();
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() { filterCards(this.dataset.filter); });
+  });
+
+  document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+
+  document.getElementById('modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+});
 </script>
 </body>
 </html>
