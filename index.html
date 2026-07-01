@@ -665,16 +665,16 @@ const clients = [
   {
     id: 'jaraguá',
     name: 'Jaraguá Equipamentos',
-    risco: 'alto',
-    pillLabel: 'MUITO ALTO',
-    statusCard: 'Sem campanhas desde novembro. Inadimplente nas plataformas. Parcelando mensalidades.',
-    status: 'Cliente não roda campanhas desde novembro. Responde que vai pagar o boleto das plataformas, mas acaba não pagando. Está em processo de parcelamento das mensalidades do serviço. O caso é ponto de atenção e precisa de tentativa de reversão. Problema pode ser caixa, prioridade ou falta de percepção de valor.',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Pagamento regularizado e cliente vai retomar. Aguardando gravação para reativar campanhas.',
+    status: 'Cliente pagou e confirmou que vai voltar. Campanhas seguem pausadas, mas a retomada está encaminhada. O próximo passo é realizar a gravação dos criativos para então reativar as campanhas.',
     todos: [
-      'Wesley avaliar situação financeira/contratual do cliente.',
-      'Gabriel levantar histórico de resultados anteriores para usar na conversa de reversão.',
-      'Marcar conversa objetiva com cliente para entender se há intenção real de retomada.',
-      'Propor plano mínimo de reativação, se fizer sentido.',
-      'Definir prazo limite para retomada ou encerramento organizado.'
+      'Agendar e realizar gravação dos criativos.',
+      'Confirmar data de retomada das campanhas após gravação.',
+      'Retomar campanhas assim que material estiver pronto.',
+      'Alinhar expectativas de resultado para o período pós-retomada.',
+      'Monitorar de perto nos primeiros meses para garantir satisfação.'
     ],
     resps: ['Gabriel', 'Wesley']
   },
@@ -698,10 +698,10 @@ const clients = [
   {
     id: 'harmonia',
     name: 'Harmonia Móveis',
-    risco: 'alto',
-    pillLabel: 'ALTO',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
     statusCard: 'Cliente satisfeita com a agência, mas emocionalmente cansada e cogitando sair do negócio.',
-    status: 'Cliente satisfeita com o serviço prestado, mas precisa de mais presença e conversa. Ela entende que a baixa em vendas não vem do marketing, mas do mercado. Está há mais de 20 anos no ramo, demonstra cansaço e cogita sair do negócio. Risco emocional/comercial alto — pode cancelar não por insatisfação com a agência, mas por desânimo com o próprio negócio.',
+    status: 'Cliente satisfeita com o serviço prestado, mas precisa de mais presença e conversa. Ela entende que a baixa em vendas não vem do marketing, mas do mercado. Está há mais de 20 anos no ramo, demonstra cansaço e cogita sair do negócio. Risco emocional/comercial — pode cancelar não por insatisfação com a agência, mas por desânimo com o próprio negócio.',
     todos: [
       'Wesley e Gabriel alinharem uma conversa mais estratégica com a cliente.',
       'Reforçar que o marketing está fazendo sua parte, mas propor ajustes realistas.',
@@ -715,35 +715,20 @@ const clients = [
   {
     id: 'ilha-tintas',
     name: 'Ilha Tintas',
-    risco: 'medio',
-    pillLabel: 'MÉDIO',
-    statusCard: 'Satisfação boa e fluxo na loja cresceu, mas falta mensuração e há dúvida sobre notas/gastos.',
-    status: 'Cliente com dificuldade de mensurar resultados. Satisfação geral boa, gostando bastante da criação. Feedback positivo: fluxo da loja aumentou, com bastante impacto do Google. Problema a resolver: notas/gastos das plataformas. Google parece estar gerando impacto presencial, mas falta atribuição clara.',
+    risco: 'baixo',
+    pillLabel: 'BAIXO ⚠',
+    statusCard: 'Cliente satisfeito. Ponto pendente: ajustar controle financeiro — colocar saldo no início do mês.',
+    status: 'Cliente satisfeito com os resultados. Fluxo da loja aumentou, com impacto positivo do Google. Ponto a resolver: ajuste no controle financeiro das plataformas — é necessário colocar o saldo no início do mês para evitar saldo residual no final. Fora isso, cliente está bem.',
     todos: [
-      'Gabriel levantar dados de Google Ads e Meta Ads.',
-      'Preparar explicação clara sobre gastos das plataformas e notas.',
+      'Ajustar rotina de colocar saldo nas plataformas no início do mês.',
+      'Garantir que não fique saldo residual no final do período.',
+      'Gabriel levantar dados de Google Ads e Meta Ads para apresentar ao cliente.',
       'Criar rotina simples de mensuração na loja: "Como conheceu a loja?".',
-      'Avaliar uso de conversões offline ou planilha de origem dos clientes.',
-      'Reforçar para o cliente que aumento de fluxo é sinal positivo, mas precisa ser registrado.'
+      'Reforçar que o aumento de fluxo é resultado das campanhas.'
     ],
     resps: ['Gabriel', 'Wesley']
   },
-  {
-    id: 'odonto-avante',
-    name: 'Odonto Avante',
-    risco: 'medio',
-    pillLabel: 'MÉDIO',
-    statusCard: 'CPL caiu ~R$6 após ajustes. Agendamentos aumentaram, mas falta validar conversão em vendas.',
-    status: 'Começo foi ruim, mas após ajustes nos criativos o custo por lead caiu cerca de R$ 6. Estão agendando bastante. É necessário verificar se os agendamentos estão gerando vendas e cobrar preenchimento da planilha. Sem planilha preenchida, não dá para avaliar resultado real.',
-    todos: [
-      'Gabriel cobrar preenchimento da planilha de leads/agendamentos/vendas.',
-      'Verificar quantos agendamentos viraram comparecimento.',
-      'Verificar quantos comparecimentos viraram venda.',
-      'Manter criativos que reduziram CPL.',
-      'Criar novos testes baseados nos criativos vencedores.'
-    ],
-    resps: ['Gabriel']
-  },
+
   {
     id: 'thiago-adv',
     name: 'Thiago ADV Criminal',
@@ -764,15 +749,15 @@ const clients = [
   {
     id: 'viva-otica',
     name: 'Viva Ótica',
-    risco: 'medio',
-    pillLabel: 'MÉDIO',
-    statusCard: 'Cliente satisfeito. Meta rodando, Google aguarda site. Criativos gerais aumentaram custo.',
-    status: 'Copy enviada ao designer. Site deve ser finalizado em breve — depois disso, será possível iniciar campanhas no Google. Meta já está rodando desde o mês passado. Dia das Mães foi muito positivo. O vídeo geral subiu o custo em comparação à campanha de Dia das Mães. Precisa pensar em novos criativos para reduzir custo.',
+    risco: 'alto',
+    pillLabel: 'ALTO',
+    statusCard: 'Cliente insatisfeito com os vídeos atuais. Aguardando entrega dos novos criativos.',
+    status: 'Cliente apresentou insatisfação com os vídeos atuais — desempenho abaixo do esperado em comparação à campanha de Dia das Mães. Está aguardando a entrega dos novos vídeos. A resolução depende da entrega rápida e da performance dos novos criativos. Google ainda depende do site ser finalizado.',
     todos: [
-      'Gabriel acompanhar finalização do site.',
-      'Subir campanhas de Google após site finalizado.',
-      'Comparar dados da campanha de Dia das Mães versus vídeo geral.',
-      'Criar novos criativos com apelo mais direto/oferta/dor.',
+      'Priorizar e entregar os novos vídeos o quanto antes.',
+      'Gabriel acompanhar finalização do site para subir Google.',
+      'Ao entregar os criativos, alinhar expectativa de prazo para ver resultado.',
+      'Comparar dados da campanha de Dia das Mães versus vídeo geral para embasar próximas decisões.',
       'Testar criativos por produto, benefício e sazonalidade.',
       'Mensurar se Meta está gerando leads, mensagens ou fluxo presencial.'
     ],
@@ -795,22 +780,7 @@ const clients = [
     ],
     resps: ['Gabriel', 'Wesley']
   },
-  {
-    id: 'maison-clean',
-    name: 'Maison Clean',
-    risco: 'medio',
-    pillLabel: 'MÉDIO',
-    statusCard: 'Pode subir campanhas com materiais do cliente, mas precisa alinhar responsabilidade antes.',
-    status: 'Existe possibilidade de acelerar e colocar campanhas para rodar com os materiais que já existem. Mas precisa deixar claro que a agência não pode responder integralmente pelos resultados de materiais desenvolvidos pelo próprio cliente. Risco de responsabilização da agência por criativo que não foi produzido internamente.',
-    todos: [
-      'Wesley/Gabriel enviar mensagem de alinhamento ao cliente.',
-      'Explicar que é possível rodar com materiais existentes, mas performance pode ser limitada.',
-      'Registrar aceite do cliente sobre a limitação de material.',
-      'Se cliente estiver de acordo, subir campanhas.',
-      'Sugerir produção de materiais pela agência para próximos testes.'
-    ],
-    resps: ['Gabriel', 'Wesley']
-  },
+
   {
     id: 'nali-odontologia',
     name: 'Nali Odontologia',
@@ -894,15 +864,15 @@ const clients = [
   {
     id: 'udmar',
     name: 'Udmar',
-    risco: 'setup',
-    pillLabel: 'SETUP',
-    statusCard: 'Setup atrasado por falta de materiais. Captação agendada. Cliente ciente.',
-    status: 'Nada rodando. Captação agendada. Período de setup deve atrasar devido à falta de materiais para captação. Cliente está ciente. Satisfação ok, mas ainda é cedo para mensurar.',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Setup concluído. Precisa alinhar com o cliente sobre o papel e as expectativas do marketing.',
+    status: 'Setup finalizado. Campanhas em andamento, mas é necessário alinhar com o cliente pontos importantes sobre a função do marketing — expectativas, mensuração e o que está dentro e fora do escopo da agência.',
     todos: [
-      'Confirmar data da captação.',
-      'Listar materiais pendentes.',
-      'Comunicar com clareza que o atraso está vinculado à falta de materiais.',
-      'Após captação, acelerar edição, criativos e campanha.',
+      'Alinhar com o cliente o papel do marketing e expectativas realistas.',
+      'Definir KPIs claros desde o início.',
+      'Garantir que o cliente entenda o que a agência pode e não pode controlar.',
+      'Criar rotina de acompanhamento de resultados.',
       'Wesley acompanhar se o cliente precisa de atualização formal.'
     ],
     resps: ['Gabriel', 'Wesley']
@@ -920,6 +890,36 @@ const clients = [
       'Gabriel acompanhar performance inicial da Meta.',
       'Avaliar se divisão de verba faz sentido ou se precisa concentrar.',
       'Explicar limitação de volume com R$ 100/mês em Google.'
+    ],
+    resps: ['Gabriel']
+  },
+  {
+    id: 'stainhaus',
+    name: 'Stainhaus Marmoraria',
+    risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Em fase de setup.',
+    status: 'Cliente em fase de setup.',
+    todos: [
+      'Confirmar acessos e materiais necessários.',
+      'Definir estrutura inicial de campanhas.',
+      'Alinhar expectativas de prazo, volume e tipo de lead antes da ativação.',
+      'Criar base de mensuração desde o início.'
+    ],
+    resps: ['Gabriel']
+  },
+  {
+    id: 'boeing-moveis',
+    name: 'Boeing Móveis Sob Medida',
+    risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Em fase de setup.',
+    status: 'Cliente em fase de setup.',
+    todos: [
+      'Confirmar acessos e materiais necessários.',
+      'Definir estrutura inicial de campanhas.',
+      'Alinhar expectativas de prazo, volume e tipo de lead antes da ativação.',
+      'Criar base de mensuração desde o início.'
     ],
     resps: ['Gabriel']
   }
