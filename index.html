@@ -48,6 +48,8 @@
   .filter-btn.active-medio { background: var(--medio-bg); border-color: var(--medio); color: var(--medio); }
   .filter-btn.active-baixo { background: var(--baixo-bg); border-color: var(--baixo); color: var(--baixo); }
   .filter-btn.active-setup { background: var(--setup-bg); border-color: var(--setup); color: var(--setup); }
+  .filter-btn.active-resp { background: rgba(124,140,248,0.12); border-color: var(--accent); color: var(--accent); }
+  .filter-sep { margin-left: 6px; border-left: 1px solid var(--dim); padding-left: 16px; }
 
   main { padding: 32px 40px; max-width: 1440px; margin: 0 auto; }
 
@@ -147,7 +149,7 @@
   <div class="header-left">
     <div class="eyebrow">Gestão de Carteira</div>
     <h1>Dashboard de Risco de Churn</h1>
-    <div class="meta-info">Reunião de alinhamento — Wesley Head · Bruno GT · Amanda CS</div>
+    <div class="meta-info">Reunião de alinhamento — Wesley Head · Bruno GT · Amanda CS · Gabriel</div>
   </div>
   <div class="header-right">
     <button class="filter-btn active-all" data-filter="todos">Todos</button>
@@ -155,6 +157,10 @@
     <button class="filter-btn" data-filter="medio">Médio</button>
     <button class="filter-btn" data-filter="baixo">Baixo</button>
     <button class="filter-btn" data-filter="setup">Setup</button>
+    <button class="filter-btn filter-sep" data-filter="resp-Gabriel">Gabriel</button>
+    <button class="filter-btn" data-filter="resp-Wesley">Wesley</button>
+    <button class="filter-btn" data-filter="resp-Bruno">Bruno</button>
+    <button class="filter-btn" data-filter="resp-Amanda">Amanda</button>
   </div>
 </header>
 
@@ -654,6 +660,268 @@ const clients = [
       'Criar base de mensuração desde o início para evitar falta de dados depois.'
     ],
     resps: []
+  },
+  // ── GABRIEL — ALTO RISCO ──────────────────────────────────────
+  {
+    id: 'jaraguá',
+    name: 'Jaraguá Equipamentos',
+    risco: 'alto',
+    pillLabel: 'MUITO ALTO',
+    statusCard: 'Sem campanhas desde novembro. Inadimplente nas plataformas. Parcelando mensalidades.',
+    status: 'Cliente não roda campanhas desde novembro. Responde que vai pagar o boleto das plataformas, mas acaba não pagando. Está em processo de parcelamento das mensalidades do serviço. O caso é ponto de atenção e precisa de tentativa de reversão. Problema pode ser caixa, prioridade ou falta de percepção de valor.',
+    todos: [
+      'Wesley avaliar situação financeira/contratual do cliente.',
+      'Gabriel levantar histórico de resultados anteriores para usar na conversa de reversão.',
+      'Marcar conversa objetiva com cliente para entender se há intenção real de retomada.',
+      'Propor plano mínimo de reativação, se fizer sentido.',
+      'Definir prazo limite para retomada ou encerramento organizado.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'mokumanu',
+    name: 'Mokumanu Fit',
+    risco: 'alto',
+    pillLabel: 'MUITO ALTO',
+    statusCard: 'Campanhas rodando com zero vendas no e-commerce. Diagnóstico urgente necessário.',
+    status: 'Campanhas rodando, mas até o momento com zero vendas no e-commerce. Pode ser campanha, público, criativo, site, oferta, preço, frete, checkout ou confiança. Precisa diagnóstico completo antes de apenas mexer na campanha.',
+    todos: [
+      'Gabriel analisar métricas do funil: CTR, CPC, sessões no site, adições ao carrinho, início de checkout e taxa de conversão.',
+      'Verificar se pixel/conversões estão corretos.',
+      'Avaliar página de produto, frete, preço e checkout.',
+      'Comparar criativos e anúncios ativos.',
+      'Criar plano de teste para primeira venda.',
+      'Wesley avaliar se precisa envolver alguém para análise de site/oferta.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'harmonia',
+    name: 'Harmonia Móveis',
+    risco: 'alto',
+    pillLabel: 'ALTO',
+    statusCard: 'Cliente satisfeita com a agência, mas emocionalmente cansada e cogitando sair do negócio.',
+    status: 'Cliente satisfeita com o serviço prestado, mas precisa de mais presença e conversa. Ela entende que a baixa em vendas não vem do marketing, mas do mercado. Está há mais de 20 anos no ramo, demonstra cansaço e cogita sair do negócio. Risco emocional/comercial alto — pode cancelar não por insatisfação com a agência, mas por desânimo com o próprio negócio.',
+    todos: [
+      'Wesley e Gabriel alinharem uma conversa mais estratégica com a cliente.',
+      'Reforçar que o marketing está fazendo sua parte, mas propor ajustes realistas.',
+      'Avaliar campanhas com foco em oportunidades mais imediatas.',
+      'Pensar em comunicação mais voltada para diferenciação, confiança e desejo.',
+      'Mapear se existem produtos/linhas com maior giro para priorizar.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  // ── GABRIEL — MÉDIO RISCO ─────────────────────────────────────
+  {
+    id: 'ilha-tintas',
+    name: 'Ilha Tintas',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Satisfação boa e fluxo na loja cresceu, mas falta mensuração e há dúvida sobre notas/gastos.',
+    status: 'Cliente com dificuldade de mensurar resultados. Satisfação geral boa, gostando bastante da criação. Feedback positivo: fluxo da loja aumentou, com bastante impacto do Google. Problema a resolver: notas/gastos das plataformas. Google parece estar gerando impacto presencial, mas falta atribuição clara.',
+    todos: [
+      'Gabriel levantar dados de Google Ads e Meta Ads.',
+      'Preparar explicação clara sobre gastos das plataformas e notas.',
+      'Criar rotina simples de mensuração na loja: "Como conheceu a loja?".',
+      'Avaliar uso de conversões offline ou planilha de origem dos clientes.',
+      'Reforçar para o cliente que aumento de fluxo é sinal positivo, mas precisa ser registrado.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'odonto-avante',
+    name: 'Odonto Avante',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'CPL caiu ~R$6 após ajustes. Agendamentos aumentaram, mas falta validar conversão em vendas.',
+    status: 'Começo foi ruim, mas após ajustes nos criativos o custo por lead caiu cerca de R$ 6. Estão agendando bastante. É necessário verificar se os agendamentos estão gerando vendas e cobrar preenchimento da planilha. Sem planilha preenchida, não dá para avaliar resultado real.',
+    todos: [
+      'Gabriel cobrar preenchimento da planilha de leads/agendamentos/vendas.',
+      'Verificar quantos agendamentos viraram comparecimento.',
+      'Verificar quantos comparecimentos viraram venda.',
+      'Manter criativos que reduziram CPL.',
+      'Criar novos testes baseados nos criativos vencedores.'
+    ],
+    resps: ['Gabriel']
+  },
+  {
+    id: 'thiago-adv',
+    name: 'Thiago ADV Criminal',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Cliente satisfeito e com 2 fechamentos de 5 casos. Campanhas pausadas por problema bancário.',
+    status: 'De 5 casos, fechou 2. Na última semana, a Receita travou todas as contas bancárias e atualmente as campanhas estão pausadas. Cliente está empolgado, gostou das gravações e tem satisfação geral positiva com criação e leads. CPL atual em torno de R$ 33, com necessidade de melhoria.',
+    todos: [
+      'Gabriel registrar resultados: 5 casos, 2 fechamentos.',
+      'Levantar ticket/valor dos casos fechados, se possível.',
+      'Assim que contas forem liberadas, retomar campanhas com ajustes de CPL.',
+      'Analisar criativos e públicos com melhor custo.',
+      'Criar plano de otimização para reduzir CPL abaixo de R$ 33.',
+      'Wesley avaliar se vale transformar esse case em argumento interno de retenção.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'viva-otica',
+    name: 'Viva Ótica',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Cliente satisfeito. Meta rodando, Google aguarda site. Criativos gerais aumentaram custo.',
+    status: 'Copy enviada ao designer. Site deve ser finalizado em breve — depois disso, será possível iniciar campanhas no Google. Meta já está rodando desde o mês passado. Dia das Mães foi muito positivo. O vídeo geral subiu o custo em comparação à campanha de Dia das Mães. Precisa pensar em novos criativos para reduzir custo.',
+    todos: [
+      'Gabriel acompanhar finalização do site.',
+      'Subir campanhas de Google após site finalizado.',
+      'Comparar dados da campanha de Dia das Mães versus vídeo geral.',
+      'Criar novos criativos com apelo mais direto/oferta/dor.',
+      'Testar criativos por produto, benefício e sazonalidade.',
+      'Mensurar se Meta está gerando leads, mensagens ou fluxo presencial.'
+    ],
+    resps: ['Gabriel']
+  },
+  {
+    id: 'arte-grill',
+    name: 'Arte Grill',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Pronto para subir, mas aguarda validação de criativos, acesso às contas e destino dos leads.',
+    status: 'Criativos prontos, aguardando especialista validar. Após validação, campanhas devem subir. É necessário verificar os números que irão receber os leads e avaliar possível criação de landing page para certos produtos. Wesley precisa liberar acesso das contas de anúncios.',
+    todos: [
+      'Especialista validar criativos.',
+      'Wesley liberar acesso às contas de anúncios.',
+      'Gabriel confirmar números de WhatsApp que receberão os leads.',
+      'Subir campanhas após validação e acesso.',
+      'Mapear produtos que podem precisar de landing page.',
+      'Definir se campanha inicial vai para WhatsApp, formulário ou LP.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'maison-clean',
+    name: 'Maison Clean',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Pode subir campanhas com materiais do cliente, mas precisa alinhar responsabilidade antes.',
+    status: 'Existe possibilidade de acelerar e colocar campanhas para rodar com os materiais que já existem. Mas precisa deixar claro que a agência não pode responder integralmente pelos resultados de materiais desenvolvidos pelo próprio cliente. Risco de responsabilização da agência por criativo que não foi produzido internamente.',
+    todos: [
+      'Wesley/Gabriel enviar mensagem de alinhamento ao cliente.',
+      'Explicar que é possível rodar com materiais existentes, mas performance pode ser limitada.',
+      'Registrar aceite do cliente sobre a limitação de material.',
+      'Se cliente estiver de acordo, subir campanhas.',
+      'Sugerir produção de materiais pela agência para próximos testes.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'nali-odontologia',
+    name: 'Nali Odontologia',
+    risco: 'medio',
+    pillLabel: 'MÉDIO',
+    statusCard: 'Gera agendamentos, mas sem mensuração. Dona em licença maternidade — comunicação delicada.',
+    status: 'Dona da empresa está de licença maternidade. A equipe está evitando contato direto, mandando mensagens pontuais para respeitar o momento. Gabriel está em contato com Daiane no privado. Campanhas estão rodando e gerando agendamentos, mas sem mensuração de resultados. É difícil marcar reunião por conta da alta demanda de atendimentos emergenciais.',
+    todos: [
+      'Gabriel tentar marcar horário rápido com Daiane.',
+      'Criar formato simples de mensuração: leads, agendamentos, comparecimentos e fechamentos.',
+      'Evitar excesso de mensagens para a dona.',
+      'Solicitar retorno pontual sobre qualidade dos agendamentos.',
+      'Se não houver reunião, enviar checklist objetivo por WhatsApp.'
+    ],
+    resps: ['Gabriel']
+  },
+  // ── GABRIEL — BAIXO RISCO ─────────────────────────────────────
+  {
+    id: 'bonamigo',
+    name: 'Bonamigo',
+    risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: 'Cliente satisfeito com 2 vendas fechadas. Precisa mensurar valor das vendas (móvel planejado).',
+    status: 'Cliente com satisfação positiva. Está muito satisfeito com os criativos, fluxo de leads e orçamento. Já fechou 2 vendas e ficou de passar o valor das vendas, principalmente por se tratar de móvel planejado, onde a jornada de compra é mais longa e o ticket é mais alto.',
+    todos: [
+      'Gabriel cobrar o valor das 2 vendas fechadas.',
+      'Mapear tempo médio entre lead, orçamento e fechamento.',
+      'Criar acompanhamento de oportunidades em andamento.',
+      'Avaliar se os criativos atuais devem ser mantidos ou se já cabe iniciar novos testes.'
+    ],
+    resps: ['Gabriel']
+  },
+  {
+    id: 'receituario',
+    name: 'Receituário',
+    risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: 'Ajuste comercial em andamento. Follow-ups iniciados e novo formato de pagamento (50/50).',
+    status: 'Processo comercial sendo ajustado. Estão iniciando follow-ups para recuperar leads que não responderam e também trabalhando leads de recompra. O formato de pagamento foi alterado para 50% entrada e 50% no final.',
+    todos: [
+      'Gabriel acompanhar se os follow-ups estão sendo feitos.',
+      'Solicitar retorno sobre quantos leads foram recuperados.',
+      'Medir se a mudança no pagamento aumentou a taxa de fechamento.',
+      'Sugerir criativos ou mensagens que reforcem facilidade/segurança no pagamento.'
+    ],
+    resps: ['Gabriel']
+  },
+  {
+    id: 'vho-advocacia',
+    name: 'VHO Advocacia',
+    risco: 'baixo',
+    pillLabel: 'BAIXO',
+    statusCard: 'Cliente ok, mas verba de apenas R$200/mês e informações desorganizadas.',
+    status: 'Investimento atual de apenas R$ 200/mês. Cliente está com a agência desde o início. Estão perdidos nas informações, mas cliente está ok. Verba muito baixa limita resultado. Cliente pode não ter clareza sobre o que esperar.',
+    todos: [
+      'Gabriel montar resumo simples do que está rodando e resultados atuais.',
+      'Wesley avaliar se vale reunião de realinhamento.',
+      'Explicar limitação da verba atual.',
+      'Sugerir plano mínimo viável, caso queiram mais previsibilidade.',
+      'Organizar indicadores principais para o cliente não ficar perdido.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  // ── GABRIEL — SETUP ───────────────────────────────────────────
+  {
+    id: 'pluscolor',
+    name: 'Pluscolor',
+    risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Setup atrasado por falta de acessos do cliente. Etapa de gravação em andamento.',
+    status: 'Está em processo de setup. Houve atraso por falta de acessos, senhas e informações. Cliente está ciente de que a demora foi causada pela falta desses acessos. A equipe está na parte de gravação e outras etapas do setup já foram concluídas ou adiantadas.',
+    todos: [
+      'Gabriel listar etapas já concluídas no setup.',
+      'Confirmar pendências restantes.',
+      'Dar previsão objetiva da próxima etapa após gravação.',
+      'Registrar que o atraso foi por falta de acessos.',
+      'Wesley acompanhar se será necessário reforçar alinhamento com o cliente.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'udmar',
+    name: 'Udmar',
+    risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Setup atrasado por falta de materiais. Captação agendada. Cliente ciente.',
+    status: 'Nada rodando. Captação agendada. Período de setup deve atrasar devido à falta de materiais para captação. Cliente está ciente. Satisfação ok, mas ainda é cedo para mensurar.',
+    todos: [
+      'Confirmar data da captação.',
+      'Listar materiais pendentes.',
+      'Comunicar com clareza que o atraso está vinculado à falta de materiais.',
+      'Após captação, acelerar edição, criativos e campanha.',
+      'Wesley acompanhar se o cliente precisa de atualização formal.'
+    ],
+    resps: ['Gabriel', 'Wesley']
+  },
+  {
+    id: 'santa-luzia',
+    name: 'Santa Luzia',
+    risco: 'setup',
+    pillLabel: 'SETUP',
+    statusCard: 'Meta rodando. Google aguarda LP. Verba total de R$500/mês exige expectativa realista.',
+    status: 'Landing page em fase de conclusão. Google deve rodar em breve. Verba mensal: R$ 500, sendo R$ 400 Meta e R$ 100 Google. Meta já está rodando. Verba muito baixa para dividir entre Meta e Google. Google com R$ 100/mês tende a ter aprendizado e volume limitados.',
+    todos: [
+      'Finalizar landing page.',
+      'Subir Google após LP finalizada.',
+      'Gabriel acompanhar performance inicial da Meta.',
+      'Avaliar se divisão de verba faz sentido ou se precisa concentrar.',
+      'Explicar limitação de volume com R$ 100/mês em Google.'
+    ],
+    resps: ['Gabriel']
   }
 ];
 
@@ -688,6 +956,7 @@ function buildCards() {
         ${respsHtml}
       </div>`;
 
+    card.dataset.resps = c.resps.join(',');
     card.addEventListener('click', function() { openModal(c.id); });
     grids[c.risco].appendChild(card);
   });
@@ -723,18 +992,45 @@ function closeModal() {
 
 // Filter
 function filterCards(type) {
+  const isResp = type.startsWith('resp-');
+  const respName = isResp ? type.replace('resp-', '') : null;
+
   document.querySelectorAll('.filter-btn').forEach(b => {
     const f = b.dataset.filter;
-    b.className = 'filter-btn' + (f === type ? ' active-' + (f === 'todos' ? 'all' : f) : '');
+    const isSep = b.classList.contains('filter-sep');
+    let cls = 'filter-btn' + (isSep ? ' filter-sep' : '');
+    if (f === type) {
+      if (isResp) cls += ' active-resp';
+      else cls += ' active-' + (f === 'todos' ? 'all' : f);
+    }
+    b.className = cls;
   });
 
   document.querySelectorAll('.client-card').forEach(card => {
-    card.classList.toggle('hidden', type !== 'todos' && card.dataset.risco !== type);
+    let hide = false;
+    if (type === 'todos') {
+      hide = false;
+    } else if (isResp) {
+      const cardResps = card.dataset.resps || '';
+      hide = !cardResps.split(',').includes(respName);
+    } else {
+      hide = card.dataset.risco !== type;
+    }
+    card.classList.toggle('hidden', hide);
   });
 
   ['alto','medio','baixo','setup'].forEach(g => {
     const group = document.getElementById('group-' + g);
-    group.classList.toggle('hidden', type !== 'todos' && type !== g);
+    if (type === 'todos' || isResp) {
+      group.classList.remove('hidden');
+    } else {
+      group.classList.toggle('hidden', type !== g);
+    }
+    // If resp filter: hide section if all cards in it are hidden
+    if (isResp) {
+      const visibleCards = group.querySelectorAll('.client-card:not(.hidden)');
+      group.classList.toggle('hidden', visibleCards.length === 0);
+    }
   });
 }
 
